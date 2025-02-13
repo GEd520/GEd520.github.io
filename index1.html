@@ -17,6 +17,7 @@
       margin: 0;
       padding: 0;
       background-color: #FFD9E6;
+      overflow-y: scroll;  /* 添加这行代码 */
     }
 
   .image-text-container {
@@ -25,23 +26,22 @@
     }
 
   .text-and-image {
-  background-color: rgba(0, 255, 255, 0.1); 
-  position: relative;
-}
+      background-color: rgba(0, 255, 255, 0.1);
+      position: relative;
+    }
 
-.text-and-image::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/header_2025_02_10_18_24.png');
-  background-size: 100% 100%;  /* 修改为 100% 100%，确保图片完全覆盖 */
-  background-repeat: no-repeat; 
-  z-index: -1;
-}
-
+  .text-and-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/header_2025_02_10_18_24.png');
+      background-size: 100% 100%;  /* 修改为 100% 100%，确保图片完全覆盖 */
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
 
   .image-name {
       margin-top: 10px;
@@ -128,7 +128,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-     .source-bzda {
+
+  .source-bzda {
       display: block;
       width: 200px;
       height: 5px;
@@ -138,7 +139,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-jlwh {
+
+  .source-jlwh {
       display: block;
       width: 200px;
       height: 5px;
@@ -148,7 +150,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-yxyck {
+
+  .source-yxyck {
       display: block;
       width: 200px;
       height: 5px;
@@ -158,7 +161,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-yiove {
+
+  .source-yiove {
       display: block;
       width: 200px;
       height: 5px;
@@ -168,7 +172,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-myzdj {
+
+  .source-myzdj {
       display: block;
       width: 200px;
       height: 5px;
@@ -178,7 +183,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-xhfby {
+
+  .source-xhfby {
       display: block;
       width: 200px;
       height: 5px;
@@ -188,7 +194,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-ddrj {
+
+  .source-ddrj {
       display: block;
       width: 200px;
       height: 5px;
@@ -198,7 +205,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-ydxg {
+
+  .source-ydxg {
       display: block;
       width: 200px;
       height: 5px;
@@ -208,7 +216,8 @@
       margin: 0 auto;
       line-height: 5px;
     }
-    .source-jmxg {
+
+  .source-jmxg {
       display: block;
       width: 200px;
       height: 5px;
@@ -218,19 +227,17 @@
       margin: 0 auto;
       line-height: 5px;
     }
+
   .source-kjsc {
-  display: block;
-  width: 96px;
-  padding: 10px;
-  margin-left: auto;
-  margin-top: 20px;  /* 例如，设置为 20 像素下移，您可以根据需要调整此值 */
-  background-color: #CCFF;
-  color: black;
-  border-radius: 10px;
-}
-
-
-
+      display: block;
+      width: 96px;
+      padding: 10px;
+      margin-left: auto;
+      margin-top: 20px;  /* 例如，设置为 20 像素下移，您可以根据需要调整此值 */
+      background-color: #CCFF;
+      color: black;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
