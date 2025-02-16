@@ -171,11 +171,9 @@
     }
 
     /* 弹窗样式 */
-    .popup {
-  width: 80%;       /* 宽度为视口宽度的80% */
-  max-width: 400px; /* 最大宽度限制 */
-  height: 60%;      /* 高度为视口高度的60% */
-  max-height: 300px;/* 最大高度限制 */
+   .popup {
+  width: 300px;  /* 设置弹窗的固定宽度 */
+  height: 200px; /* 设置弹窗的固定高度 */
   display: none;
   position: fixed;
   top: 50%;
@@ -186,13 +184,18 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  overflow: auto; /* 如果内容超出弹窗大小，允许滚动 */
 }
 
+.popup img {
+  max-width: 100%; /* 图片宽度不超过弹窗宽度 */
+  max-height: 100%; /* 图片高度不超过弹窗高度 */
+  width: auto; /* 保持图片的宽高比例 */
+  height: auto;
+  display: block; /* 去掉图片下方的空白间隙 */
+  margin: 0 auto; /* 居中显示图片 */
+}
 
-    .popup img {
-      max-width: 100%;
-      height: auto;
-    }
 
     .popup-overlay {
       display: none;
