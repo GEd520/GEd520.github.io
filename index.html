@@ -171,30 +171,29 @@
     }
 
     /* 弹窗样式 */
-   .popup {
-  width: 300px;  /* 设置弹窗的固定宽度 */
-  height: 200px; /* 设置弹窗的固定高度 */
+.popup {
+  width: 300px;  /* 弹窗宽度 */
+  height: 200px; /* 弹窗高度 */
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 20px;
+  padding: 0;  /* 移除内边距，确保图片完全填满 */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  overflow: auto; /* 如果内容超出弹窗大小，允许滚动 */
+  overflow: hidden; /* 防止内容溢出 */
 }
 
 .popup img {
-  max-width: 100%; /* 图片宽度不超过弹窗宽度 */
-  max-height: 100%; /* 图片高度不超过弹窗高度 */
-  width: auto; /* 保持图片的宽高比例 */
-  height: auto;
-  display: block; /* 去掉图片下方的空白间隙 */
-  margin: 0 auto; /* 居中显示图片 */
+  width: 100%;       /* 图片宽度占满容器 */
+  height: 100%;      /* 图片高度占满容器 */
+  object-fit: cover; /* 保持宽高比例，裁剪多余部分 */
+  border-radius: 10px; /* 与弹窗的圆角保持一致 */
 }
+
 
 
     .popup-overlay {
@@ -253,7 +252,7 @@
   <div class="popup" id="popup">
     <button onclick="closePopup()" style="float: right; cursor: pointer; background: none; border: none; font-size: 20px;">×</button>
     <img src="IMG_20250216_214611.jpg" alt="Popup Image">
-    <p>这是一个弹窗示例！</p>
+    <p>QQ</p>
   </div>
 
   <!-- 弹窗遮罩 -->
