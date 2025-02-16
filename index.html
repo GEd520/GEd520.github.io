@@ -171,28 +171,37 @@
     }
 
     /* 弹窗样式 */
-.popup {
-  width: 300px;  /* 弹窗宽度 */
-  height: 200px; /* 弹窗高度 */
+  .popup {
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  padding: 0;  /* 移除内边距，确保图片完全填满 */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
   overflow: hidden; /* 防止内容溢出 */
+  padding: 0; /* 移除内边距 */
 }
 
 .popup img {
-  width: 100%;       /* 图片宽度占满容器 */
-  height: 100%;      /* 图片高度占满容器 */
-  object-fit: cover; /* 保持宽高比例，裁剪多余部分 */
-  border-radius: 10px; /* 与弹窗的圆角保持一致 */
+  width: 100%; /* 图片宽度占满弹窗 */
+  height: auto; /* 图片高度自适应 */
+  display: block; /* 去掉图片下方的空白间隙 */
 }
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 500;
+}
+
 
 
 
