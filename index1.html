@@ -124,6 +124,89 @@
       width: 100%;
       box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
     }
+    
+  footer {
+    background-color: #87CEEB;
+    color: #ffffff;
+    text-align: center;
+    padding: 1px 0;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+  }
+
+  .friend-link {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 3px 8px; /* 减小内边距 */
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  .friend-link:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+  }
+  /* 弹窗样式 */
+  .popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 400px;
+  max-height: 80vh; /* 限制最大高度为视口的80% */
+  overflow-y: auto; /* 添加垂直滚动条 */
+  position: relative;
+}
+
+
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .popup-content h3 {
+    margin-top: 0;
+  }
+
+  .popup-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .popup-content ul li a {
+      color: #333;
+      text-decoration: none;
+      display: block;
+      margin: 5px 0;
+      padding: 5px 10px;
+      border: 1px solid #ccc; /* 添加边框样式 */
+      border-radius: 5px; /* 添加圆角 */
+    }
+
+  .popup-content ul li a:hover {
+      text-decoration: underline;
+      background-color: #f0f0f0; /* 鼠标悬停时的背景色 */
+    }
   </style>
 </head>
 
@@ -150,10 +233,42 @@
     <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
     <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
   </div>
-  <footer>
-    <p>🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
-    <p style="margin-top: 10px; padding-top: 0px;">❗不能进就挂魔法❗</p>
-  </footer>
+<footer>
+  <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
+  <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
+    <a href="https://blog.ttxz.eu.org" target="_blank" class="friend-link">天天的小站</a>
+    <a href="https://anotherexample.com" target="_blank" class="friend-link">另一个网站</a>
+    <button class="friend-link" onclick="togglePopup()">更多链接</button>
+  </div>
+  <p style="margin: 5px 0;">🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
+  <p style="margin: 5px 0;">❗不能进就挂魔法❗</p>
+</footer>
+
+<!-- 弹窗内容 -->
+<div id="popup" class="popup-container" style="display: none;">
+  <div class="popup-content">
+    <span class="close-button" onclick="togglePopup()">×</span>
+    <h3>更多链接</h3>
+    <ul>
+      <li><a href="https://link1.com" target="_blank">链接1</a></li>
+      <li><a href="https://link2.com" target="_blank">链接2</a></li>
+      <li><a href="https://link3.com" target="_blank">链接3</a></li>
+      <!-- 添加更多链接 -->
+      <!-- 如果链接很多，弹窗会自动显示滚动条 -->
+    </ul>
+  </div>
+</div>
+<script>
+  function togglePopup() {
+    var popup = document.getElementById("popup");
+    if (popup.style.display === "none") {
+      popup.style.display = "flex";
+    } else {
+      popup.style.display = "none";
+    }
+  }
+</script>
+
 </body>
 
 </html>
