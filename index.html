@@ -3,15 +3,13 @@
 
 <head>
   <meta content="always" name="referrer">
-  <link rel="icon" type="image/png" href="">
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/50"> <!-- 由于网络原因，原链接无法解析，请检查链接的合法性或稍后重试。 -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#eee">
   <title>辞之次元</title>
-  <link rel="shortcut icon" href="https://file.uhsea.com/2502/3f45b264f2c6bdf7090591733d0602a4I5.ico" />
-
   <style>
     /* 全局样式 */
     body {
@@ -40,14 +38,14 @@
       padding: 2em;
     }
 
-  .intro {
+    .intro {
       text-align: center;
       font-size: 2em;
       font-weight: bold;
       color: white;
     }
 
-  .dynamic-text {
+    .dynamic-text {
       text-align: center;
       margin-top: 5px;
       font-size: 17px;
@@ -57,10 +55,32 @@
       position: relative;
       width: 0;
       left: 50%;
-      animation: typing 5s steps(20, end) infinite;
+      animation: typing 5s steps(20, end) infinite, blink 0.75s step-end infinite;
     }
 
-  .content {
+    /* 模拟打字效果 */
+    @keyframes typing {
+      0%, 100% {
+        width: 0;
+        left: 50%;
+      }
+      50% {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    /* 模拟光标闪烁 */
+    @keyframes blink {
+      from, to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: black;
+      }
+    }
+
+    .content {
       margin-top: 2em;
       background-color: #ffe4e1;
       padding: 1em;
@@ -80,7 +100,7 @@
     }
 
     /* 头像样式 */
- .rotating-image {
+    .rotating-image {
       width: 120px;
       height: 120px;
       display: block;
@@ -88,19 +108,20 @@
       border-radius: 50%;
     }
 
-.text {
+    .text {
       text-align: center;
       color: #ffffff;
       font-size: 15px;
     }
 
     /* 图片名称样式 */
- .image-name {
+    .image-name {
       text-align: center;
       margin-top: 10px;
       font-weight: bold;
     }
 
+    /* 链接样式 */
     a {
       display: block;
       width: 200px;
@@ -109,29 +130,20 @@
       text-align: center;
       padding: 10px;
       margin: 0 auto;
-      line-height: 5px;  /* 新增这一行，使文字垂直居中 */
+      line-height: 5px;  /* 使文字垂直居中 */
+      text-decoration: none;
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
     }
 
-    @keyframes typing {
-      0% {
-        width: 0;
-        left: 50%;
-      }
-
-      50% {
-        width: 100%;
-        left: 0;
-      }
-
-      100% {
-        width: 0;
-        left: 50%;
-      }
+    a:hover {
+      background-color: #ff8000;
     }
   </style>
 </head>
 
-
+<body>
   <main>
     <section class="intro">
       <p>辞之次元</p>
@@ -147,7 +159,5 @@
   <footer>
     <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
   </footer>
-
 </body>
-
 </html>
