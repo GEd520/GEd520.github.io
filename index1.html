@@ -19,19 +19,27 @@
       background-color: #FFD9E6;
       height: 100vh;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-   .image-text-container {
-      min-height: 80vh;
+    .image-text-container {
+      flex: 1;
       overflow-y: auto;
+      padding: 20px;
     }
 
-   .text-and-image {
+    .text-and-image {
       background-color: rgba(0, 255, 255, 0.1);
       position: relative;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
-   .text-and-image::before {
+    .text-and-image::before {
       content: "";
       position: absolute;
       top: 0;
@@ -39,31 +47,74 @@
       width: 100%;
       height: 100%;
       background-image: url('/header_2025_02_10_18_24.png');
-      background-size: 100% 100%;
+      background-size: cover;
       background-repeat: no-repeat;
       z-index: -1;
+      opacity: 0.3;
     }
 
-   .image-name {
+    .image-name {
       margin-top: 10px;
       font-weight: bold;
-      margin-left: 39px;
+      color: #333;
     }
 
-   .text {
+    .text {
       text-align: left;
-      color: #fffff;
+      color: #333;
       font-size: 15px;
-      margin-left: 20px;
+      margin-top: 10px;
     }
 
-   .rotating-image {
+    .rotating-image {
       width: 120px;
       height: 120px;
       display: block;
-      margin-left: 0;
+      margin: 0 auto;
       border-radius: 50%;
+      animation: rotation 10s infinite linear;
     }
+
+    @keyframes rotation {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .source-link {
+      display: block;
+      width: 200px;
+      margin: 10px auto;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .source-link:hover {
+      transform: scale(1.05);
+    }
+
+    .source-ysqfby { background-color: #ff9900; }
+    .source-repository { background-color: #0099ff; }
+    .source-yolo { background-color: green; }
+    .source-dhlfby { background-color: red; }
+    .source-ydgj { background-color: pink; }
+    .source-bzda { background-color: yellow; }
+    .source-jlwh { background-color: #00FF80; }
+    .source-yxyck { background-color: #87CEEB; }
+    .source-yiove { background-color: #FFFF99; }
+    .source-myzdj { background-color: #87CE; }
+    .source-xhfby { background-color: pink; }
+    .source-ddrj { background-color: #80FF80; }
+    .source-ydxg { background-color: #87CEEB; }
+    .source-jmxg { background-color: #CCFFCC; }
+    .source-kjsc { background-color: #CCFF; }
 
     footer {
       background-color: #87CEEB;
@@ -71,173 +122,7 @@
       text-align: center;
       padding: 1em 0;
       width: 100%;
-      bottom: 0;
-      box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
-    }
-
-   .source-ysqfby {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #ff9900;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-repository {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #0099ff;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-yolo {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: green;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-dhlfby {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: red;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-ydgj {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: pink;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-bzda {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: Yellow;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-jlwh {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #00FF80;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-yxyck {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #87CEEB;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-yiove {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #FFFF99;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-myzdj {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #87CE;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-xhfby {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: pink;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-ddrj {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #80FF80;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-ydxg {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #87CEEB;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-jmxg {
-      display: block;
-      width: 200px;
-      height: 5px;
-      background-color: #CCFFCC;
-      text-align: center;
-      padding: 10px;
-      margin: 0 auto;
-      line-height: 5px;
-    }
-
-  .source-kjsc {
-      display: block;
-      width: 96px;
-      padding: 10px;
-      margin-left: auto;
-      margin-top: 20px;
-      background-color: #CCFF;
-      color: black;
-      border-radius: 10px;
+      box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
@@ -247,23 +132,23 @@
     <div class="text-and-image">
       <img src="13f331fe4b8693510c09d600cb1601f4d873ca214a282746dc4fdcc80280086e.0.JPG" alt="头像" class="rotating-image">
       <p class="image-name">辞晨</p>
-      <p class="text">你好，世界！</p>
+      <p class="text">你好，世界！欢迎来到辞之次元空间。</p>
     </div>
-    <div class="source-ysqfby"><a href="https://taoba.cf/">源社区发布页</a></div>
-    <div class="source-repository"><a href="https://www.yckceo.com/yuedu/shuyuan/index.html">源仓库</a></div>
-    <div class="source-yolo"><a href="https://yolo52.github.io/Yuedu/">yolo 书库</a></div>
-    <div class="source-dhlfby"><a href="https://github.com/shidahuilang/">大灰狼发布页</a></div>
-    <div class="source-ydgj"><a href="http://srcbs.cn/other/3/msg.html">阅读工具</a></div>
-    <div class="source-bzda"><a href="https://github.com/Luoyacheng">洛娅橙书库</a></div>
-     <div class="source-jlwh"><a href="https://github.com/jiwangyihao/source-j-legado">吉义王昊书库</a></div>
-      <div class="source-yxyck"><a href="http://fabu.yihulove.top/">yx源仓库</a></div>
-      <div class="source-yiove"><a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=">yiove源仓库</a></div>
-      <div class="source-myzdj"><a href="https://skybook.pages.dev/">明月照大江发布</a></div>
-      <div class="source-xhfby"><a href="https://qyyuapi.com/">XH发布页</a></div>
-      <div class="source-ddrj"><a href="https://blog.ttxz.eu.org/index.php/archives/2.html">天天的鸟蛋蛋书源日记</a></div>
-      <div class="source-ydxg"><a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830">阅读相关</a></div>
-      <div class="source-jmxg"><a href="https://gitee.com/lff283/syrj/">活力宝/书源日记</a></div>
-      <div class="source-kjsc"><a href="/index2.html">辞之次元空间</a></div>
+    <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
+    <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
+    <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
+    <a href="https://github.com/shidahuilang/" class="source-link source-dhlfby" target="_blank">大灰狼发布页</a>
+    <a href="http://srcbs.cn/other/3/msg.html" class="source-link source-ydgj" target="_blank">阅读工具</a>
+    <a href="https://github.com/Luoyacheng" class="source-link source-bzda" target="_blank">洛娅橙书库</a>
+    <a href="https://github.com/jiwangyihao/source-j-legado" class="source-link source-jlwh" target="_blank">吉义王昊书库</a>
+    <a href="http://fabu.yihulove.top/" class="source-link source-yxyck" target="_blank">yx源仓库</a>
+    <a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=" class="source-link source-yiove" target="_blank">yiove源仓库</a>
+    <a href="https://skybook.pages.dev/" class="source-link source-myzdj" target="_blank">明月照大江发布</a>
+    <a href="https://qyyuapi.com/" class="source-link source-xhfby" target="_blank">XH发布页</a>
+    <a href="https://blog.ttxz.eu.org/index.php/archives/2.html" class="source-link source-ddrj" target="_blank">天天的鸟蛋蛋书源日记</a>
+    <a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830" class="source-link source-ydxg" target="_blank">阅读相关</a>
+    <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
+    <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
   </div>
   <footer>
     <p>🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
