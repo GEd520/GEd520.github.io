@@ -3,7 +3,7 @@
 
 <head>
   <meta content="always" name="referrer">
-  <link rel="icon" type="image/png" href="https://via.placeholder.com/50"> <!-- 由于网络原因，原链接无法解析，请检查链接的合法性或稍后重试。 -->
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/50">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
@@ -125,7 +125,7 @@
     a {
       display: block;
       width: 200px;
-      height: 5px;
+      height: 10px;
       background-color: #ff9900;
       text-align: center;
       padding: 10px;
@@ -140,7 +140,72 @@
     a:hover {
       background-color: #ff8000;
     }
+    
+    /* 图标容器样式 */
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      gap: -10px; /* 缩小图标之间的间距 */
+      margin: 10px 0; /* 图标与页脚之间的间距 */
+    }
+
+    /* 图标按钮样式 */
+    .icon-button {
+      background-color: #333; /* 浅黑色背景 */
+      color: white;
+      padding: 5px;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border: 2px solid #007bff; /* 添加蓝色边框 */
+      text-decoration: none; /* 去掉链接的下划线 */
+    }
+
+    .icon-button:hover {
+      background-color: #555; /* 深一些的黑色 */
+    }
+
+    /* 弹窗样式 */
+    .popup {
+  width: 80%;       /* 宽度为视口宽度的80% */
+  max-width: 400px; /* 最大宽度限制 */
+  height: 60%;      /* 高度为视口高度的60% */
+  max-height: 300px;/* 最大高度限制 */
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+
+    .popup img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 500;
+    }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -156,8 +221,57 @@
     <p class="text">你好，世界！</p>
     <a href="./index1.html">辞之次元</a>
   </main>
+
   <footer>
+    <!-- 图标链接 -->
+    <div class="icon-container">
+      <!-- QQ图标，点击显示弹窗 -->
+      <a class="icon-button" onclick="showPopup()">
+        <i class="fab fa-qq" style="font-size: 20px;"></i>
+      </a>
+      <!-- B站图标 -->
+      <a href="https://www.bilibilibili.com" class="icon-button" target="_blank">
+        <i class="fa fa-bilibili" style="font-size:20px;"></i>
+      </a>
+      <!-- GitHub图标 -->
+      <a href="https://github.com" class="icon-button" target="_blank">
+        <i class="fab fa-github" style="font-size: 20px;"></i>
+      </a>
+      <!-- 邮箱图标 -->
+      <a href="mailto:example@example.com" class="icon-button">
+        <i class="fas fa-envelope" style="font-size: 20px;"></i>
+      </a>
+    </div>
+
     <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
   </footer>
+
+  <!-- 弹窗内容 -->
+  <div class="popup" id="popup">
+    <button onclick="closePopup()" style="float: right; cursor: pointer; background: none; border: none; font-size: 20px;">×</button>
+    <img src="qrcode_1739713105949.jpg" alt="Popup Image">
+    <p>这是一个弹窗示例！</p>
+  </div>
+
+  <!-- 弹窗遮罩 -->
+    <div class="popup-overlay" id="popup-overlay"></div>
+
+  <script>
+    // 显示弹窗
+    function showPopup() {
+      document.getElementById('popup').style.display = 'block';
+      document.getElementById('popup-overlay').style.display = 'block';
+    }
+
+    // 关闭弹窗
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    // 点击遮罩层时关闭弹窗
+    document.getElementById('popup-overlay').addEventListener('click', closePopup);
+  </script>
 </body>
 </html>
+
