@@ -145,7 +145,7 @@
     .icon-container {
       display: flex;
       justify-content: center;
-      gap: -10px; /* 缩小图标之间的间距 */
+      gap:0px; /* 缩小图标之间的间距 */
       margin: 10px 0; /* 图标与页脚之间的间距 */
     }
 
@@ -216,17 +216,22 @@
 
     <img src="13f331fe4b8693510c09d600cb1601f4d873ca214a282746dc4fdcc80280086e.0.JPG" alt="头像" class="rotating-image">
 
-    <p class="image-name">辞晨</p>
-    <p class="text">你好，世界！</p>
-    <a href="./index1.html">辞之次元</a>
+<p class="image-name">
+  <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
+</p>
+<p class="text">你好，世界！</p>
+<a href="./index1.html">辞之次元</a>
+
   </main>
 
   <footer>
     <!-- 图标链接 -->
     <div class="icon-container">
       <!-- QQ图标，点击显示弹窗 -->
-      <a class="icon-button" onclick="showPopup()">
-        <i class="fab fa-qq" style="font-size: 20px;"></i>
+      <a class="icon-button" onclick="showQQPopup()">
+  <i class="fab fa-qq" style="font-size: 20px;"></i>
+</a>
+
       </a>
       <!-- B站图标 -->
       <a href="https://m.bilibili.com/" class="icon-button" target="_blank">
@@ -246,28 +251,44 @@
   </footer>
 
   <!-- 弹窗内容 -->
-  <div class="popup" id="popup">
-    <img src="IMG_20250216_214611.jpg" alt="Popup Image">
-  </div>
+  <!-- 辞晨的弹窗 -->
+<div class="popup" id="name-popup">
+  <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
+</div>
 
-  <!-- 弹窗遮罩 -->
-    <div class="popup-overlay" id="popup-overlay"></div>
+<!-- QQ 图标的弹窗 -->
+<div class="popup" id="qq-popup">
+  <img src="IMG_20250216_214611.jpg" alt="QQ弹窗图片">
+</div>
+
+<!-- 弹窗遮罩 -->
+<div class="popup-overlay" id="popup-overlay"></div>
+
 
   <script>
     // 显示弹窗
-    function showPopup() {
-      document.getElementById('popup').style.display = 'block';
-      document.getElementById('popup-overlay').style.display = 'block';
-    }
+    // 显示辞晨的弹窗
+function showNamePopup() {
+  document.getElementById('name-popup').style.display = 'block';
+  document.getElementById('popup-overlay').style.display = 'block';
+}
 
-    // 关闭弹窗
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-      document.getElementById('popup-overlay').style.display = 'none';
-    }
+// 显示QQ的弹窗
+function showQQPopup() {
+  document.getElementById('qq-popup').style.display = 'block';
+  document.getElementById('popup-overlay').style.display = 'block';
+}
 
-    // 点击遮罩层时关闭弹窗
-    document.getElementById('popup-overlay').addEventListener('click', closePopup);
+// 关闭弹窗
+function closePopup() {
+  document.getElementById('name-popup').style.display = 'none';
+  document.getElementById('qq-popup').style.display = 'none';
+  document.getElementById('popup-overlay').style.display = 'none';
+}
+
+// 点击遮罩层时关闭弹窗
+document.getElementById('popup-overlay').addEventListener('click', closePopup);
+
   </script>
 </body>
 </html>
