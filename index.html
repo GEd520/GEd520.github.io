@@ -171,13 +171,13 @@
     }
 
     /* 弹窗样式 */
-  .popup {
+.popup {
   display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: transparent; /* 设置为透明背景 */
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
@@ -189,6 +189,7 @@
   width: 100%; /* 图片宽度占满弹窗 */
   height: auto; /* 图片高度自适应 */
   display: block; /* 去掉图片下方的空白间隙 */
+  border-radius: 10px; /* 与弹窗的圆角保持一致 */
 }
 
 .popup-overlay {
@@ -201,6 +202,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 500;
 }
+
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -235,7 +237,7 @@
         <i class="fab fa-github" style="font-size: 20px;"></i>
       </a>
       <!-- 邮箱图标 -->
-      <a href="3330253407@qq.com" class="icon-button">
+      <a href="mailto:example@example.com" class="icon-button">
         <i class="fas fa-envelope" style="font-size: 20px;"></i>
       </a>
     </div>
