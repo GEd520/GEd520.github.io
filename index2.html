@@ -3,7 +3,7 @@
 
 <head>
   <meta content="always" name="referrer">
-  <link rel="icon" type="image/png" href="">
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/50"> <!-- 添加一个占位图标 -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
@@ -16,18 +16,57 @@
       margin: 0;
       padding: 0;
       background-color: #FFD9E6;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .content {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
     }
 
     p.text {
-      color: red;
-      font-size: 16px;
+      color: #333;
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .ghost {
+      font-size: 24px;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #555;
     }
   </style>
 </head>
 
 <body>
-  <div>
-    <p class="text">没写完👻</p>
+  <div class="content">
+    <p class="text">欢迎来到辞之次元空间</p>
+    <p class="subtitle">一个充满想象的世界</p>
+    <p class="ghost">👻 页面还在建设中...</p>
+  </div>
+  <div class="footer">
+    <p>版权所有 © 2025 辞晨</p>
   </div>
 </body>
 
