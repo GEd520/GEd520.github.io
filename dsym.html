@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打赏页面</title>
+    <style>
+        /* 全局样式 */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #0056b3;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --warning-color: #ffc107;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --border-radius: 8px;
+            --padding: 20px;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 按钮样式 */
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1em;
+            font-family: var(--font-family);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 2px 5px var(--shadow-color);
+        }
+
+        .button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* 二维码样式 */
+        .qrcode img {
+            width: 150px; /* 调整二维码图片大小 */
+            margin-top: 20px;
+        }
+
+        /* 内容样式 */
+        .content {
+            max-width: 300px; /* 调整最大宽度 */
+            margin: 80px auto;
+            padding: var(--padding);
+            background-color: #fff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px var(--shadow-color);
+            text-align: center;
+            font-family: var(--font-family);
+        }
+
+        /* 标题样式 */
+        h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* 段落样式 */
+        p {
+            margin-bottom: 20px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* 联系作者按钮样式 */
+        a.button {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content">
+    <h3>支持一下 ☕</h3>
+    <p>打赏作者喝杯咖啡，感谢支持！</p>
+    <p>目前支持微打赏。</p>
+    <a href="mailto:3330253407@qq.com" class="button">联系作者</a>
+    <div class="qrcode">
+        <img src="IMG_20250217_011445.png" alt="赞赏码">
+    </div>
+    <div>
+        <button class="button" style="background-color: var(--success-color);">微信</button>
+        <button class="button" style="background-color: var(--info-color);">支付宝</button>
+        <button class="button" style="background-color: var(--warning-color);">QQ</button>
+    </div>
+</div>
+
+</body>
+</html>
