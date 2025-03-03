@@ -144,6 +144,27 @@
     font-weight: bold;
     transition: background-color 0.3s, transform 0.3s;
   }
+    /* 弹窗样式 */
+   .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: transparent; /* 设置为透明背景 */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow: hidden; /* 防止内容溢出 */
+      padding: 0; /* 移除内边距 */
+    }
+
+   .popup img {
+      width: 100%; /* 图片宽度占满弹窗 */
+      height: auto; /* 图片高度自适应 */
+      display: block; /* 去掉图片下方的空白间隙 */
+      border-radius: 10px; /* 与弹窗的圆角保持一致 */
+    }
 
   .friend-link:hover {
     background-color: #e0e0e0;
@@ -174,7 +195,16 @@
   overflow-y: auto; /* 添加垂直滚动条 */
   position: relative;
 }
-
+   .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 500;
+    }
 
   .close-button {
     position: absolute;
@@ -214,7 +244,9 @@
   <div class="image-text-container">
    <div class="text-and-image">
   <img src="13f331fe4b8693510c09d600cb1601f4d873ca214a282746dc4fdcc80280086e.0.JPG" alt="头像" class="rotating-image">
-  <p class="image-name">辞晨</p>
+    <p class="image-name">
+      <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
+    </p>
   <p class="text" style="text-align: center;">你好，世界！欢迎来到辞之次元空间。
    QQ群：961349989</p>
     </div>
@@ -244,6 +276,14 @@
   <p style="margin: 5px 0;">🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
   <p style="margin: 5px 0;">❗不能进就挂魔法❗</p>
 </footer>
+  <!-- 弹窗内容 -->
+  <!-- 辞晨的弹窗 -->
+  <div class="popup" id="name-popup">
+    <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
+  </div>
+
+  <!-- 弹窗遮罩 -->
+  <div class="popup-overlay" id="popup-overlay"></div>
 
 <!-- 弹窗内容 -->
 <div id="popup" class="popup-container" style="display: none;">
@@ -271,6 +311,21 @@
       popup.style.display = "none";
     }
   }
+ // 显示弹窗
+    function showNamePopup() {
+        document.getElementById('name-popup').style.display = 'flex';
+        document.getElementById('popup-overlay').style.display = 'block';
+    }
+
+    // 关闭弹窗
+    function closePopup() {
+        document.getElementById('name-popup').style.display = 'none';
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+
+    // 点击遮罩层时关闭弹窗
+    document.getElementById('popup-overlay').addEventListener('click', closePopup);
+
 </script>
 
 </body>
