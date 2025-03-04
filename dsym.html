@@ -29,13 +29,14 @@
             cursor: pointer;
             font-size: 1em;
             font-family: var(--font-family);
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 2px 5px var(--shadow-color);
         }
 
         .button:hover {
             background-color: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 4px 10px var(--shadow-color);
         }
 
         .button:disabled {
@@ -48,6 +49,8 @@
         .qrcode img {
             width: 150px; /* 调整二维码图片大小 */
             margin-top: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px var(--shadow-color);
         }
 
         /* 内容样式 */
@@ -79,6 +82,20 @@
         a.button {
             text-decoration: none;
         }
+
+        /* 响应式设计 */
+        @media (max-width: 400px) {
+            .content {
+                padding: 15px;
+            }
+            .button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+            .qrcode img {
+                width: 100px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -91,9 +108,9 @@
         <img id="qrcode-image" src="IMG_20250217_011445.png" alt="赞赏码">
     </div>
     <div>
-        <button class="button" style="background-color: var(--success-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250217_011445.png'">微信</button>
-        <button class="button" style="background-color: var(--info-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250303_223330.jpg'">支付宝</button>
-        <button class="button" style="background-color: var(--warning-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250303_223231.png'">QQ</button>
+        <button class="button" style="background-color: var(--success-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250217_011445.png'" aria-label="选择微信支付">微信</button>
+        <button class="button" style="background-color: var(--info-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250303_223330.jpg'" aria-label="选择支付宝支付">支付宝</button>
+        <button class="button" style="background-color: var(--warning-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250303_223231.png'" aria-label="选择QQ支付">QQ</button>
     </div>
 </div>
 
