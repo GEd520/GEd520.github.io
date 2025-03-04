@@ -91,26 +91,11 @@
         <img id="qrcode-image" src="IMG_20250217_011445.png" alt="赞赏码">
     </div>
     <div>
-        <button class="button" style="background-color: var(--success-color);" onclick="changeQRCode('wechat')">微信</button>
-        <button class="button" style="background-color: var(--info-color);" onclick="changeQRCode('alipay')">支付宝</button>
-        <button class="button" style="background-color: var(--warning-color);" onclick="changeQRCode('qq')">QQ</button>
+        <button class="button" style="background-color: var(--success-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250217_011445.png'">微信</button>
+        <button class="button" style="background-color: var(--info-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250303_223330.jpg'">支付宝</button>
+        <button class="button" style="background-color: var(--warning-color);" onclick="document.getElementById('qrcode-image').src='IMG_20250303_223231.png'">QQ</button>
     </div>
 </div>
-
-<script>
-    // 定义不同收款码的图片路径
-    const qrCodes = {
-        wechat: "IMG_20250217_011445.png", // 微信收款码
-        alipay: "IMG_20250303_223330.jpg",      // 支付宝收款码
-        qq: "IMG_20250303_223231.png"               // QQ收款码
-    };
-
-    // 切换收款码的函数
-    function changeQRCode(platform) {
-        const qrcodeImage = document.getElementById("qrcode-image");
-        qrcodeImage.src = qrCodes[platform];
-    }
-</script>
 
 </body>
 </html>
