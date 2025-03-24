@@ -67,7 +67,7 @@
             border-radius: 4px; /* 圆角边框 */
             margin-top: 20px;
             white-space: pre-wrap;
-            font-size: 1rem; /* 字体大小 */
+            font-size: 0.8rem; /* 字体大小缩小到 0.8rem */
             color: #333; /* 深灰色文字 */
         }
     </style>
@@ -94,25 +94,43 @@
         }
 
         /**
+         * 生成随机长度的随机字符串
+         * @param {number} minLength - 最小长度
+         * @param {number} maxLength - 最大长度
+         * @returns {string} 随机字符串
+         */
+        function generateRandomString(minLength, maxLength) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                result += characters[randomIndex];
+            }
+            return result;
+        }
+
+        /**
          * 简化的 Base64 加密函数
          * @param {string} value - 需要加密的值
          * @returns {string} 加密后的 Base64 字符串
          */
         function simpleBase64Encrypt(value) {
-            // 添加固定长度的随机字符串（8位）
-            const randomString = Math.random().toString(36).substring(2, 10);
+            // 添加随机长度的随机字符串（最小 5 位，最大 15 位）
+            const randomString = generateRandomString(5, 15);
             const combinedString = randomString + value;
             // Base64 编码
             return btoa(combinedString);
         }
 
         /**
-         * 在编码后的字符串末尾添加固定长度的随机字符串（4位）
+         * 在编码后的字符串末尾添加随机长度的随机字符串
          * @param {string} encodedString - 已编码的字符串
          * @returns {string} 添加随机后缀后的字符串
          */
         function appendRandomSuffix(encodedString) {
-            const randomSuffix = Math.random().toString(36).substring(2, 6);
+            // 添加随机长度的随机后缀（最小 3 位，最大 8 位）
+            const randomSuffix = generateRandomString(3, 8);
             return encodedString + randomSuffix;
         }
 
