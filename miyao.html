@@ -1,148 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>密钥生成器</title>
+    <title>密钥生成</title>
     <style>
-        /* 全局样式 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* 浅蓝色背景 */
-            color: #333; /* 深灰色文字 */
+            font-family: "微软雅黑", Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #f0f0f5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
-        /* 容器样式 */
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #fff; /* 白色背景 */
-            border-radius: 8px; /* 圆角边框 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-            text-align: center;
-        }
-
-        /* 标题样式 */
         h1 {
-            font-size: 2rem; /* 标题字体大小 */
-            color: #4CAF50; /* 绿色标题 */
+            text-align: center;
+            color: #333;
             margin-bottom: 20px;
+            font-size: 1.8em; /* 修改了字体大小 */
+            animation: fadeIn 1s ease;
         }
 
-        /* 段落样式 */
-        p {
-            font-size: 1rem; /* 段落字体大小 */
-            margin-bottom: 20px;
+        #container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
-        /* 按钮样式 */
-        button {
-            padding: 12px 24px; /* 按钮内边距 */
-            font-size: 1rem; /* 按钮字体大小 */
-            background-color: #4CAF50; /* 绿色按钮 */
-            color: #fff; /* 白色文字 */
-            border: none;
-            border-radius: 4px; /* 圆角按钮 */
-            cursor: pointer; /* 鼠标悬停时显示手型 */
-            transition: background-color 0.3s ease; /* 背景颜色过渡效果 */
+        #container:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
         }
 
-        /* 按钮悬停样式 */
-        button:hover {
-            background-color: #45a049; /* 鼠标悬停时的按钮颜色 */
-        }
-
-        /* 输出区域样式 */
-        pre {
-            background-color: #f4f4f4; /* 浅灰色背景 */
-            padding: 15px;
-            border: 1px solid #ddd; /* 浅灰色边框 */
-            border-radius: 4px; /* 圆角边框 */
+        #result {
             margin-top: 20px;
-            white-space: pre-wrap;
-            font-size: 0.8rem; /* 字体大小缩小到 0.8rem */
-            color: #333; /* 深灰色文字 */
+            font-size: 1em; /* 修改了字体大小 */
+            color: #333;
+            word-wrap: break-word;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 0.9em; /* 修改了字体大小 */
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #45a049, #4CAF50);
+        }
+
+        button.loading {
+            background: linear-gradient(to right, #ccc, #ccc) no - repeat;
+            background - size: 100% 100%;
+            animation: progress 2s linear infinite;
+        }
+
+        @keyframes progress {
+            0% {
+                background - position: 0 0;
+            }
+
+            100% {
+                background - position: -100% 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.4em; /* 修改了字体大小 */
+            }
+
+            button {
+                font-size: 0.8em; /* 修改了字体大小 */
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>密钥生成器</h1>
-        <p>点击按钮生成密钥</p>
-        <button onclick="generateAndEncrypt()">生成密钥</button>
-        <pre id="output"></pre>
+    <div id="container">
+        <h1>密钥生成</h1>
+        <button id="generateButton">生成密钥</button>
+        <div id="result"></div>
     </div>
 
     <script>
-        /**
-         * 生成原始密钥
-         * @returns {string} 格式为 YYYYMMDD 的日期字符串
-         */
-        function generateKey() {
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            return `${year}${month}${day}`;
-        }
-
-        /**
-         * 生成随机长度的随机字符串
-         * @param {number} minLength - 最小长度
-         * @param {number} maxLength - 最大长度
-         * @returns {string} 随机字符串
-         */
-        function generateRandomString(minLength, maxLength) {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+        // 生成指定长度的随机Base64字符串
+        function generateRandomBase64(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
             let result = '';
             for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                result += characters[randomIndex];
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
             }
             return result;
         }
 
-        /**
-         * 简化的 Base64 加密函数
-         * @param {string} value - 需要加密的值
-         * @returns {string} 加密后的 Base64 字符串
-         */
-        function simpleBase64Encrypt(value) {
-            // 添加随机长度的随机字符串（最小 5 位，最大 15 位）
-            const randomString = generateRandomString(5, 15);
-            const combinedString = randomString + value;
-            // Base64 编码
-            return btoa(combinedString);
+        // 将字符串转换为Base64
+        function toBase64(str) {
+            return btoa(str);
         }
 
-        /**
-         * 在编码后的字符串末尾添加随机长度的随机字符串
-         * @param {string} encodedString - 已编码的字符串
-         * @returns {string} 添加随机后缀后的字符串
-         */
-        function appendRandomSuffix(encodedString) {
-            // 添加随机长度的随机后缀（最小 3 位，最大 8 位）
-            const randomSuffix = generateRandomString(3, 8);
-            return encodedString + randomSuffix;
+        // 生成最终的密钥
+        function generateKey() {
+            // 获取当前日期
+            let now = new Date();
+            let year = now.getFullYear();
+            let month = String(now.getMonth() + 1).padStart(2, '0');
+            let day = String(now.getDate()).padStart(2, '0');
+            let datePart = `${year}${month}${day}`;
+
+            // 将日期部分转换为Base64
+            let base64DatePart = toBase64(datePart);
+
+            // 生成随机长度的前缀和后缀（4 - 8位）
+            let prefixLength = Math.floor(Math.random() * 5) + 4;
+            let suffixLength = Math.floor(Math.random() * 5) + 4;
+
+            // 生成随机Base64字符串作为前缀和后缀
+            let prefix = generateRandomBase64(prefixLength);
+            let suffix = generateRandomBase64(suffixLength);
+
+            // 将它们组合在一起
+            return `${prefix}${base64DatePart}${suffix}`;
         }
 
-        /**
-         * 主函数：生成并加密密钥
-         */
-        function generateAndEncrypt() {
-            const key = generateKey();
-            const encryptedKey = simpleBase64Encrypt(key);
-            const finalKey = appendRandomSuffix(encryptedKey);
-            document.getElementById('output').textContent = `${finalKey}`;
-        }
+        // 按钮点击事件
+        document.getElementById('generateButton').addEventListener('click', function () {
+            this.classList.add('loading');
+            this.disabled = true;
+            let resultDiv = document.getElementById('result');
+            resultDiv.style.opacity = 0;
+            setTimeout(() => {
+                let key = generateKey();
+                resultDiv.innerText = `${key}`;
+                resultDiv.style.opacity = 1;
+                this.classList.remove('loading');
+                this.disabled = false;
+            }, 1000);
+        });
     </script>
 </body>
+
 </html>
