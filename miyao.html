@@ -21,7 +21,7 @@
             text-align: center;
             color: #333;
             margin-bottom: 20px;
-            font-size: 1.8em; /* 修改了字体大小 */
+            font-size: 1.8em;
             animation: fadeIn 1s ease;
         }
 
@@ -43,7 +43,7 @@
 
         #result {
             margin-top: 20px;
-            font-size: 1em; /* 修改了字体大小 */
+            font-size: 1em;
             color: #333;
             word-wrap: break-word;
             background-color: #f9f9f9;
@@ -59,7 +59,7 @@
             display: block;
             width: 100%;
             padding: 15px;
-            font-size: 0.9em; /* 修改了字体大小 */
+            font-size: 0.9em;
             background: linear-gradient(to right, #4CAF50, #45a049);
             color: #fff;
             border: none;
@@ -74,18 +74,18 @@
         }
 
         button.loading {
-            background: linear-gradient(to right, #ccc, #ccc) no - repeat;
-            background - size: 100% 100%;
+            background: linear-gradient(to right, #ccc, #ccc) no-repeat;
+            background-size: 100% 100%;
             animation: progress 2s linear infinite;
         }
 
         @keyframes progress {
             0% {
-                background - position: 0 0;
+                background-position: 0 0;
             }
 
             100% {
-                background - position: -100% 0;
+                background-position: -100% 0;
             }
         }
 
@@ -101,12 +101,31 @@
 
         @media (max-width: 600px) {
             h1 {
-                font-size: 1.4em; /* 修改了字体大小 */
+                font-size: 1.4em;
             }
 
             button {
-                font-size: 0.8em; /* 修改了字体大小 */
+                font-size: 0.8em;
             }
+        }
+
+        /* 新增的复制按钮样式 */
+        #copyButton {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 0.9em;
+            background: linear-gradient(to right, #2196F3, #1976D2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #copyButton:hover {
+            background: linear-gradient(to right, #1976D2, #2196F3);
         }
     </style>
 </head>
@@ -116,6 +135,8 @@
         <h1>密钥生成</h1>
         <button id="generateButton">生成密钥</button>
         <div id="result"></div>
+        <!-- 新增的复制按钮 -->
+        <button id="copyButton" style="display:none;">复制密钥</button>
     </div>
 
     <script>
@@ -163,14 +184,34 @@
             this.classList.add('loading');
             this.disabled = true;
             let resultDiv = document.getElementById('result');
+            let copyButton = document.getElementById('copyButton');
             resultDiv.style.opacity = 0;
             setTimeout(() => {
                 let key = generateKey();
                 resultDiv.innerText = `${key}`;
                 resultDiv.style.opacity = 1;
+                copyButton.style.display = 'block';
                 this.classList.remove('loading');
                 this.disabled = false;
             }, 1000);
+        });
+
+        // 复制按钮点击事件
+        document.getElementById('copyButton').addEventListener('click', async function () {
+            let resultDiv = document.getElementById('result');
+            try {
+                await navigator.clipboard.writeText(resultDiv.innerText);
+                this.textContent = '复制成功';
+                setTimeout(() => {
+                    this.textContent = '复制密钥';
+                }, 1500);
+            } catch (err) {
+                console.error('复制文本到剪贴板时出错:', err);
+                this.textContent = '复制失败';
+                setTimeout(() => {
+                    this.textContent = '复制密钥';
+                }, 1500);
+            }
         });
     </script>
 </body>
