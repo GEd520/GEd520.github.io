@@ -46,11 +46,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('/header_2025_02_10_18_24.png');
+      background-image: url('/image_download2.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       z-index: -1;
-      opacity: 0.3;
+      /* opacity: 0.3; */ /* 删除或注释掉这行 */
     }
 
     .image-name {
@@ -64,7 +64,20 @@
       color: #333;
       font-size: 15px;
       margin-top: 10px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      padding: 10px; /* 增加内边距 */
+      border-radius: 10px; /* 添加圆角 */
+      animation: blink 9s infinite; /* 添加闪烁动画 */
     }
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 
     .rotating-image {
       width: 120px;
@@ -299,6 +312,7 @@
        <li><a href="https://sbtool.us.kg/" target="_blank">🍟的工具箱</a></li>
        <li><a href="http://fb.shushan.vip:9999/" target="_blank">书山发布页</a></li>
        <li><a href="https://jingluo.love/" target="_blank">🐋鲸落博客</a></li>
+       <li><a href="https://www.yesui.me" target="_blank">情无羁的世界</li>
       <!-- 添加更多链接 -->
       <!-- 如果链接很多，弹窗会自动显示滚动条 -->
     </ul>
