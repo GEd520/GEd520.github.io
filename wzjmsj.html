@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人主页</title>
+<style>
+body {
+background: url("https://imgapi.cn/api.php?zd=mobile&fl=dongman&gs=images") no-repeat center center;
+background-size: cover;
+background-attachment: fixed;
+margin:0;
+}
+section {
+padding: 20px;
+margin: 20px;
+background-color: rgba(255, 255, 255, 0.7);
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+section h2, section .jump-btn {
+  text-align: center;
+  width: 100%;
+}
+img {
+max-width: 100%;
+height: auto;
+}
+footer {
+text-align: center;
+background-color: #333;
+color: white;
+padding: 10px;
+}
+p { text-indent: 1.2em; }
+/* 整个 section 的样式 */
+.project-info {
+  padding: 40px;
+  margin: 40px auto;
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+  border-radius: 16px; /* 圆角 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 阴影 */
+  text-align: center; /* 内容居中 */
+  max-width: 600px; /* 最大宽度 */
+  transition: transform 0.3s ease-in-out; /* 鼠标悬停时的动画 */
+}
+
+.project-info:hover {
+  transform: scale(1.02); /* 鼠标悬停时轻微放大 */
+}
+
+/* 标题样式 */
+.section-title {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 2.2rem; /* 字体大小 */
+  font-weight: bold; /* 加粗 */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 文字阴影 */
+}
+
+/* 按钮样式 */
+.jump-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* 渐变背景 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem; /* 字体大小 */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* 动画效果 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+}
+
+.jump-btn:hover {
+  background: linear-gradient(135deg, #2193b0, #6dd5ed); /* 鼠标悬停时的背景变化 */
+  transform: translateY(-4px); /* 向上移动 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 阴影加深 */
+}
+
+.jump-btn:active {
+  transform: translateY(0); /* 点击时回到原位 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 阴影变浅 */
+}
+
+.sakura {
+  position: fixed;
+  top: -50px;
+  pointer-events: none;
+  animation: sakuraFall linear infinite;
+  z-index: 0;
+  filter: drop-shadow(0 0 3px rgba(255,192,203,0.5));
+  will-change: transform;
+}
+@keyframes sakuraFall {
+  0% {
+    transform: 
+      translateY(-10vh)
+      translateX(calc((var(--randomX) - 0.5) * 10vw))
+      rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: 
+      translateY(110vh)
+      translateX(calc((var(--randomX) - 0.5) * 30vw))
+      rotate(720deg);
+    opacity: 0.2;
+  }
+}
+.sidebar {
+  position: fixed;
+  right: -200px;
+  bottom: 30px;
+  z-index: 9999;
+  transition: 0.45s cubic-bezier(0.22,1,0.36,1);
+  background: rgba(255,255,255,0.95);
+  border-radius: 0 16px 16px 0;
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+}
+.sidebar:hover {
+  right: 0;
+  filter: drop-shadow(2px 2px 6px rgba(0,0,0,0.1));
+}
+/* 音频播放器容器 */
+.audio - container {
+    width: 200px;
+    padding: 16px;
+    background: linear - gradient(135deg, #6dd5ed, #2193b0);
+    background - size: 400% 400%;
+    animation: gradientAnimation 10s ease - in - out infinite;
+    /* 背景渐变动画 */
+    border - radius: 16px;
+    box - shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text - align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease - in - out, box - shadow 0.3s ease - in - out;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background - position: 0% 50%;
+    }
+
+    50% {
+        background - position: 100% 50%;
+    }
+
+    100% {
+        background - position: 0% 50%;
+    }
+}
+
+.audio - container:hover {
+    transform: scale(1.05);
+    box - shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 音频播放器本身 */
+audio {
+    width: 100%!important;
+    height: 40px;
+    border - radius: 8px;
+    background: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box - shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+    transition: box - shadow 0.3s ease - in - out, border - color 0.3s ease - in - out;
+    color: #333;
+}
+
+audio:hover {
+    box - shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
+    border - color: rgba(255, 255, 255, 0.8);
+}
+
+audio:: -webkit - media - controls {
+    background: linear - gradient(to bottom, #fafafa, #e6e6e6);
+    border - radius: 8px;
+    padding: 5px;
+}
+
+audio:: -moz - media - controls {
+    background: linear - gradient(to bottom, #fafafa, #e6e6e6);
+    border - radius: 8px;
+    padding: 5px;
+}
+
+audio:: -ms - media - controls {
+    background: linear - gradient(to bottom, #fafafa, #e6e6e6);
+    border - radius: 8px;
+    padding: 5px;
+}
+
+audio::before {
+    content: '加载中...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #999;
+    opacity: 0;
+    transition: opacity 0.3s ease - in - out;
+}
+
+audio:not([src])::before {
+    opacity: 1;
+}
+
+/* 自定义播放/暂停按钮样式 */
+audio::-webkit-media-controls - play - button {
+    background - color: #6dd5ed;
+    border - radius: 50%;
+    width: 30px;
+    height: 30px;
+    background - image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M8 6v20l20-10z"/></svg>');
+    background - size: 20px 20px;
+    background - repeat: no - repeat;
+    background - position: center;
+}
+
+audio::-webkit-media-controls - pause - button {
+    background - color: #2193b0;
+    border - radius: 50%;
+    width: 30px;
+    height: 30px;
+    background - image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="10" y="6" width="6" height="20" rx="2" ry="2"/><rect x="16" y="6" width="6" height="20" rx="2" ry="2"/></svg>');
+    background - size: 20px 20px;
+    background - repeat: no - repeat;
+    background - position: center;
+}
+
+/* 播放/暂停按钮 */
+.play-pause-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #ff9500, #e08900); /* 渐变背景 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out; /* 背景颜色动画 */
+  box-shadow: 0 2px 5px rgba(255, 149, 0, 0.3); /* 阴影 */
+}
+
+.play-pause-btn:hover {
+  background: linear-gradient(135deg, #e08900, #ff9500); /* 鼠标悬停时的背景变化 */
+  box-shadow: 0 4px 8px rgba(255, 149, 0, 0.4); /* 鼠标悬停时的阴影变化 */
+}
+
+/* 音量控制条 */
+#volume-control {
+  width: 100%;
+  margin-top: 10px;
+  accent-color: #ff9500; /* 音量条的颜色 */
+  background-color: rgba(255, 255, 255, 0.5); /* 音量条的背景颜色 */
+  border-radius: 8px; /* 圆角 */
+  border: none;
+}
+
+#show {
+font-size: 16px;
+color: #FF69B4;
+margin-bottom: 10px auto;
+}
+#wrap span {
+display: block;
+width: 120px;
+height: 120px;
+background-color: rgb(10, 118, 212);
+position: absolute;
+top: 25px;
+left: 25px;
+}
+#wrap {
+width: 180px;
+height: 180px;
+margin: 100px auto;
+animation: rotate 20s infinite;
+transform-style: preserve-3d;
+}
+#wrap span img {
+width: 120px;
+height: 120px;
+}
+#in-front {
+transform: translateZ(60px);
+}
+#in-back {
+transform: translateZ(-60px);
+}
+#in-left {
+transform: rotateY(90deg) translateZ(60px);
+}
+#in-right {
+transform: rotateY(-90deg) translateZ(60px);
+}
+#in-top {
+transform: rotateX(90deg) translateZ(60px);
+}
+#in-bottom {
+transform: rotateX(-90deg) translateZ(60px);
+}
+@keyframes rotate {
+from { transform: rotateX(0deg) rotateY(0deg); }
+to { transform: rotateX(360deg) rotateY(360deg); }
+}
+#wrap div {
+width: 180px;
+height: 180px;
+background-color: brown;
+position: absolute;
+}
+#wrap div img {
+width: 180px;
+height: 180px;
+}
+#out-front {
+transform: translateZ(90px);
+}
+#out-back {
+transform: translateZ(-90px);
+}
+#out-left {
+transform: rotateY(90deg) translateZ(90px);
+}
+#out-right {
+transform: rotateY(-90deg) translateZ(90px);
+}
+#out-top {
+transform: rotateX(90deg) translateZ(90px);
+}
+#out-bottom {
+transform: rotateX(-90deg) translateZ(90px);
+}
+#wrap:hover #out-front {
+transform: translateZ(150px);
+}
+#wrap:hover #out-left {
+transform: rotateY(90deg) translateZ(140px);
+}
+#wrap:hover #out-right {
+transform: rotateY(-90deg) translateZ(140px);
+}
+#wrap:hover #out-back {
+transform: translateZ(-140px);
+}
+#wrap:hover #out-top {
+transform: rotateX(90deg) translateZ(140px);
+}
+#wrap:hover #out-bottom {
+transform: rotateX(-90deg) translateZ(140px);
+}
+.popup {
+position: fixed;
+top: 20px;
+right: -300px;
+background-color: rgba(255, 182, 193, 0.9);
+padding: 10px 30px;
+border-radius: 25px 0 0 25px;
+z-index: 1000;
+animation: slideIn 1s forwards;
+box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+@keyframes slideIn {
+to { right: 0; }
+}
+.sakura {
+position: fixed;
+top: -10px;
+pointer-events: none;
+animation: fall linear infinite;
+}
+@keyframes fall {
+to { transform: translateY(100vh) rotate(360deg); }
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+    <span id="in-front"><img src="https://api.mtyqx.cn/tapi/random.php"></span>
+    <span id="in-left"><img src="https://api.imlcd.cn/bg/gq.php"></span>
+    <span id="in-right"><img src="https://api.suyanw.cn/api/comic/api.php"></span>
+    <span id="in-back"><img src="https://p7.qhimg.com/bdr/__85/t01a9f17e10e7e7b50a.jpg"></span>
+    <span id="in-top"><img src="https://api.lucksss.com/api/dmbz?type=pc"></span>
+    <span id="in-bottom"><img src="https://api.lucksss.com/api/cosbz?type=pc"></span>
+    <div id="out-front"><img src="https://npm.elemecdn.com/ushio-api-img-moe@5.0.95/img_951_682x808_96_null_normal.png"></div>
+    <div id="out-left"><img src="https://image.baidu.com/search/down?url=https://tvax3.sinaimg.cn//large/0072Vf1pgy1foxkioq4i5j31hc0u0e1o.jpg"></div>
+    <div id="out-right"><img src="https://api.hn/dongman/OtwHb0nRcAGxu.jpg"></div>
+    <div id="out-back"><img src="https://api.mwm.moe/ycy"></div>
+    <div id="out-top"><img src="https://api.gumengya.com/Api/DmImg?format=image"></div>
+    <div id="out-bottom"><img src="https://api.7trees.cn/img"></div>
+</div>
+<center>
+<!-- 音乐侧边栏 -->
+<div class="sidebar">
+  <div class="audio-container">
+    <audio id="music" src="https://ghproxy.net/https://raw.githubusercontent.com/yolo52/file/main/Cry%20For%20Me.mp3" controls loop autoplay></audio>
+  </div>
+</div>
+<p id="show"></p>
+</center>
+ <section>
+ <h2 style="margin-top:0;color:#2c3e50;">📚 项目说明</h2>
+    <button class="jump-btn" onclick="window.open('/index1.html','_blank')">
+      <span>📦立即前往发布页</span>
+    </button>
+ </section>
+<script>
+$ = (t) => document.querySelector(t);
+function createSakura() {
+const sakura = document.createElement('div');
+sakura.className = 'sakura';
+sakura.innerHTML = '🌸';
+sakura.style.left = Math.random() * 100 + 'vw';
+sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+document.body.appendChild(sakura);
+setTimeout(() => sakura.remove(), 5000);
+}
+setInterval(createSakura, 300);
+function playPause() {
+var audio = $('#music');
+if (audio.paused) audio.play();
+else audio.pause();
+}
+window.onload = function () {
+var popup = document.createElement('div');
+
+document.body.appendChild(popup);
+setTimeout(() => popup.remove(), 3000);
+var show = $('#show');
+url = "${word_url}";
+var i = 0;
+fetch(url).then(res => res.text()).then(text => {
+timer = setInterval(function () {
+show.innerHTML = text.substring(0, i++);
+if (show.innerHTML == text) clearInterval(timer);
+}, 200);
+}).catch(err => alert(err));
+};
+window.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('music');
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(error => {
+    document.body.addEventListener('click', () => audio.play(), { once: true });
+    });
+  }
+});
+</script>
+</body>
+</html>
+
