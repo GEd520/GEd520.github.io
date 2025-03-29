@@ -20,7 +20,8 @@
       background-size: cover;
       background-attachment: fixed;
       margin: 0;
-      height: 100vh;
+      height:100%;
+      weight:100%;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -146,19 +147,17 @@ body {
 }
 
 
-    footer {
-    background-color: #87CEEB;
-    color: #ffffff;
-    text-align: center;
-    padding: 1px 0;
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-    font-size: 14px;
-  }
-
-
-    .footer-visible {
-      bottom: 0; /* 滑动到屏幕底部 */
-    }
+.footer-visible {
+  display: none; /* 默认隐藏页尾 */
+  bottom: 0;
+  width: 100%;
+  background-color: #87CEEB;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
 
     .friend-link {
       display: inline-block;
@@ -307,7 +306,7 @@ body {
   <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
   <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
 </div>
-<footer id="footer">
+<footer id="footer" class="footer-visible">
   <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
   <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
     <a href="https://blog.ttxz.eu.org" target="_blank" class="friend-link">天天的小站</a>
@@ -317,6 +316,7 @@ body {
   <p style="margin: 5px 0;">🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
   <p style="margin: 5px 0;">❗不能进就挂魔法❗</p>
 </footer>
+
   <!-- 弹窗内容 -->
   <!-- 辞晨的弹窗 -->
   <div class="popup" id="name-popup">
@@ -345,15 +345,25 @@ body {
   </div>
 </div>
 <script>
-  // 滑动显示页脚
-  window.addEventListener('scroll', function() {
-    var footer = document.getElementById('footer');
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-      footer.classList.add('footer-visible');
-    } else {
-      footer.classList.remove('footer-visible');
-    }
-  });
+function isScrolledToBottom() {
+  const totalHeight = document.documentElement.scrollHeight;
+  const viewportHeight = window.innerHeight;
+  const scrollPosition = window.scrollY;
+  return scrollPosition + viewportHeight >= totalHeight;
+}
+
+// 显示或隐藏页尾的函数
+function toggleFooterVisibility() {
+  const footer = document.getElementById('footer');
+  if (isScrolledToBottom()) {
+    footer.style.display = 'block'; // 显示页尾
+  } else {
+    footer.style.display = 'none'; // 隐藏页尾
+  }
+}
+
+// 监听滚动事件
+window.addEventListener('scroll', toggleFooterVisibility);
 
   function togglePopup() {
     var popup = document.getElementById("popup");
