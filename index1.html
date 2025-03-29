@@ -20,8 +20,7 @@
       background-size: cover;
       background-attachment: fixed;
       margin: 0;
-      height:100%;
-      weight:100%;
+      weight: 100%;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -132,32 +131,33 @@
     .source-ydxg { background-color: #87CEEB; }
     .source-jmxg { background-color: #CCFFCC; }
     .source-kjsc { background-color: #CCFF; }
-/* 页面加载动画 */
-@keyframes loading {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
-body {
-  animation: loading 3.2s ease-in-out forwards;
-}
+    /* 页面加载动画 */
+    @keyframes loading {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
 
+    body {
+      animation: loading 3.2s ease-in-out forwards;
+    }
 
-.footer-visible {
-  display: none; /* 默认隐藏页尾 */
-  bottom: 0;
-  width: 100%;
-  background-color: #87CEEB;
-  color: #ffffff;
-  text-align: center;
-  padding: 10px 0;
-  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-  font-size: 14px;
-}
+    .footer-visible {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      bottom: 0;
+      width: 100%;
+      background-color: #87CEEB;
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 0;
+      box-shadow:       0 -5px 10px rgba(0, 0, 0, 0.1);
+      font-size: 14px;
+    }
 
     .friend-link {
       display: inline-block;
@@ -263,18 +263,19 @@ body {
       text-decoration: underline;
       background-color: #f0f0f0;
     }
-    .sakura {
-    position: fixed;
-    top: -10px;
-    pointer-events: none;
-    animation: fall linear infinite;
-}
-@keyframes fall {
-    to {
-        transform: translateY(100vh) rotate(360deg); /* 向下掉落并旋转 */
-    }
-}
 
+    .sakura {
+      position: fixed;
+      top: -10px;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg); /* 向下掉落并旋转 */
+      }
+    }
   </style>
 </head>
 
@@ -283,126 +284,138 @@ body {
     <div class="text-and-image">
       <img src="13f331fe4b8693510c09d600cb1601f4d873ca214a282746dc4fdcc80280086e.0.JPG" alt="头像" class="rotating-image">
       <p class="image-name">
-      <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
-    </p>
-    <p class="text" style="text-align: center;">你好，世界！欢迎来到辞之次元空间。
-     QQ群：1042530528 </p>
-    <a href="dsym.html"target="_blank">打赏作者</a>
+        <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
+      </p>
+      <p class="text" style="text-align: center;">你好，世界！欢迎来到辞之次元空间。
+        QQ群：1042530528 </p>
+      <a href="dsym.html" target="_blank">打赏作者</a>
+    </div>
+    <a href="/miyao.html" class="source-link source-ydxg" target="_blank">书源密钥</a>
+    <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
+    <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
+    <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
+    <a href="https://github.com/shidahuilang/" class="source-link source-dhlfby" target="_blank">大灰狼发布页</a>
+    <a href="http://srcbs.cn/other/3/msg.html" class="source-link source-ydgj" target="_blank">阅读工具</a>
+    <a href="https://github.com/Luoyacheng" class="source-link source-bzda" target="_blank">洛娅橙书库</a>
+    <a href="https://github.com/jiwangyihao/source-j-legado" class="source-link source-jlwh" target="_blank">吉义王昊书库</a>
+    <a href="http://fabu.yihulove.top/" class="source-link source-yxyck" target="_blank">yx源仓库</a>
+    <a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=" class="source-link source-yiove" target="_blank">yiove源仓库</a>
+    <a href="https://skybook.pages.dev/" class="source-link source-myzdj" target="_blank">明月照大江发布</a>
+    <a href="https://qyyuapi.com/" class="source-link source-xhfby" target="_blank">XH发布页</a>
+    <a href="https://blog.ttxz.eu.org/?path=%E9%98%85%E8%AF%BB/%E5%A4%A9%E5%A4%A9%E7%9A%84%E9%B8%9F%E8%9B%8B%E8%9B%8B%E7%9A%84%E4%B9%A6%E6%BA%90%E6%97%A5%E8%AE%B0.md" class="source-link source-ddrj" target="_blank">天天的鸟蛋蛋书源日记</a>
+    <a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830" class="source-link source-ydxg" target="_blank">阅读相关</a>
+    <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
+    <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
   </div>
-  <a href="/miyao.html" class="source-link source-ydxg" target="_blank">书源密钥</a>
-  <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
-  <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
-  <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
-  <a href="https://github.com/shidahuilang/" class="source-link source-dhlfby" target="_blank">大灰狼发布页</a>
-  <a href="http://srcbs.cn/other/3/msg.html" class="source-link source-ydgj" target="_blank">阅读工具</a>
-  <a href="https://github.com/Luoyacheng" class="source-link source-bzda" target="_blank">洛娅橙书库</a>
-  <a href="https://github.com/jiwangyihao/source-j-legado" class="source-link source-jlwh" target="_blank">吉义王昊书库</a>
-  <a href="http://fabu.yihulove.top/" class="source-link source-yxyck" target="_blank">yx源仓库</a>
-  <a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=" class="source-link source-yiove" target="_blank">yiove源仓库</a>
-  <a href="https://skybook.pages.dev/" class="source-link source-myzdj" target="_blank">明月照大江发布</a>
-  <a href="https://qyyuapi.com/" class="source-link source-xhfby" target="_blank">XH发布页</a>
-  <a href="https://blog.ttxz.eu.org/?path=%E9%98%85%E8%AF%BB/%E5%A4%A9%E5%A4%A9%E7%9A%84%E9%B8%9F%E8%9B%8B%E8%9B%8B%E7%9A%84%E4%B9%A6%E6%BA%90%E6%97%A5%E8%AE%B0.md" class="source-link source-ddrj" target="_blank">天天的鸟蛋蛋书源日记</a>
-  <a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830" class="source-link source-ydxg" target="_blank">阅读相关</a>
-  <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
-  <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
-</div>
-<footer id="footer" class="footer-visible">
-  <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
-  <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
-    <a href="https://blog.ttxz.eu.org" target="_blank" class="friend-link">天天的小站</a>
-    <a href="http://czyl.cf:5080/" target="_blank" class="friend-link">在线工具箱</a>
-    <button class="friend-link" onclick="togglePopup()">更多链接</button>
-  </div>
-  <p style="margin: 5px 0;">🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
-  <p style="margin: 5px 0;">❗不能进就挂魔法❗</p>
-</footer>
+  <footer id="footer" class="footer-visible">
+    <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
+    <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
+      <a href="https://blog.ttxz.eu.org" target="_blank" class="friend-link">天天的小站</a>
+      <a href="http://czyl.cf:5080/" target="_blank" class="friend-link">在线工具箱</a>
+      <button class="friend-link" onclick="togglePopup()">更多链接</button>
+    </div>
+    <p style="margin: 5px 0;">🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
+    <p style="margin: 5px 0;">❗不能进就挂魔法❗</p>
+  </footer>
 
-  <!-- 弹窗内容 -->
-  <!-- 辞晨的弹窗 -->
-  <div class="popup" id="name-popup">
-    <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
-  </div>
+    <!-- 弹窗内容 -->
+    <!-- 辞晨的弹窗 -->
+    <div class="popup" id="name-popup">
+      <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
+    </div>
 
-  <!-- 弹窗遮罩 -->
-  <div class="popup-overlay" id="popup-overlay"></div>
+    <!-- 弹窗遮罩 -->
+    <div class="popup-overlay" id="popup-overlay"></div>
 
-<!-- 弹窗内容 -->
-<div id="popup" class="popup-container" style="display: none;">
-  <div class="popup-content">
-    <span class="close-button" onclick="togglePopup()">×</span>
-    <h3>更多链接</h3>
-    <ul>
-      <li><a href="https://jijianconvert.netlify.app/yuedutool" target="_blank">阅读/源阅转化工具</a></li>
-      <li><a href="http://czyl.cf:8333/" target="_blank">发现规则</a></li>
-      <li><a href="https://youfeng.pages.dev/" target="_blank">怣疯的博客</a></li>
-       <li><a href="https://sbtool.us.kg/" target="_blank">🍟的工具箱</a></li>
-       <li><a href="http://fb.shushan.vip:9999/" target="_blank">书山发布页</a></li>
-       <li><a href="https://jingluo.love/" target="_blank">🐋鲸落博客</a></li>
-       <li><a href="https://www.yesui.me" target="_blank">情无羁的世界</a></li>
-      <!-- 添加更多链接 -->
-      <!-- 如果链接很多，弹窗会自动显示滚动条 -->
-    </ul>
-  </div>
-</div>
-<script>
-function isScrolledToBottom() {
-  const totalHeight = document.documentElement.scrollHeight;
-  const viewportHeight = window.innerHeight;
-  const scrollPosition = window.scrollY;
-  return scrollPosition + viewportHeight >= totalHeight;
-}
+    <!-- 弹窗内容 -->
+    <div id="popup" class="popup-container" style="display: none;">
+      <div class="popup-content">
+        <span class="close-button" onclick="togglePopup()">×</span>
+        <h3>更多链接</h3>
+        <ul>
+          <li><a href="https://jijianconvert.netlify.app/yuedutool" target="_blank">阅读/源阅转化工具</a></li>
+          <li><a href="http://czyl.cf:8333/" target="_blank">发现规则</a></li>
+          <li><a href="https://youfeng.pages.dev/" target="_blank">怣疯的博客</a></li>
+          <li><a href="https://sbtool.us.kg/" target="_blank">🍟的工具箱</a></li>
+          <li><a href="http://fb.shushan.vip:9999/" target="_blank">书山发布页</a></li>
+          <li><a href="https://jingluo.love/" target="_blank">🐋鲸落博客</a></li>
+          <li><a href="https://www.yesui.me" target="_blank">情无羁的世界</a></li>
+          <!-- 添加更多链接 -->
+          <!-- 如果链接很多，弹窗会自动显示滚动条 -->
+        </ul>
+      </div>
+    </div>
+    <script>
+      function isScrolledToBottom() {
+        return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+      }
 
-// 显示或隐藏页尾的函数
-function toggleFooterVisibility() {
-  const footer = document.getElementById('footer');
-  if (isScrolledToBottom()) {
-    footer.style.display = 'block'; // 显示页尾
-  } else {
-    footer.style.display = 'none'; // 隐藏页尾
-  }
-}
+      function toggleFooterVisibility() {
+        const footer = document.getElementById('footer');
+        if (isScrolledToBottom()) {
+          footer.style.opacity = '1'; // 显示页尾
+        } else {
+          footer.style.opacity = '0'; // 隐藏页尾
+        }
+      }
 
-// 监听滚动事件
-window.addEventListener('scroll', toggleFooterVisibility);
+      window.addEventListener('scroll', throttle(toggleFooterVisibility, 100));
 
-  function togglePopup() {
-    var popup = document.getElementById("popup");
-    if (popup.style.display === "none") {
-      popup.style.display = "flex";
-    } else {
-      popup.style.display = "none";
-    }
-  }
+      function throttle(func, limit) {
+        let lastFunc;
+        let lastRan;
+        return function() {
+          const context = this;
+          const args = arguments;
+          if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+              if ((Date.now() - lastRan) >= limit) {
+                func.apply(context, args);
+                lastRan = Date.now();
+              }
+            }, limit - (Date.now() - lastRan));
+          }
+        };
+      }
 
-  // 显示弹窗
-  function showNamePopup() {
-    document.getElementById('name-popup').style.display = 'flex';
-    document.getElementById('popup-overlay').style.display = 'block';
-  }
+      function togglePopup() {
+        var popup = document.getElementById("popup");
+        if (popup.style.display === "none") {
+          popup.style.display = "flex";
+        } else {
+          popup.style.display = "none";
+        }
+      }
 
-  // 关闭弹窗
-  function closePopup() {
-    document.getElementById('name-popup').style.display = 'none';
-    document.getElementById('popup-overlay').style.display = 'none';
-  }
+      function showNamePopup() {
+        document.getElementById('name-popup').style.display = 'flex';
+        document.getElementById('popup-overlay').style.display = 'block';
+      }
 
-  // 点击遮罩层时关闭弹窗
-  document.getElementById('popup-overlay').addEventListener('click', closePopup);
-  
-  function createSakura() {
-    const sakura = document.createElement('div');
-    sakura.className = 'sakura';
-    sakura.innerHTML = '🌸';
-    sakura.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
-    sakura.style.animationDuration = Math.random() * 3 + 2 + 's'; // 随机动画持续时间
-    sakura.style.fontSize = Math.random() * 10 + 10 + 'px'; // 随机大小
-    document.body.appendChild(sakura); // 将花瓣元素添加到页面中
-    setTimeout(() => sakura.remove(), 5000); // 5秒后移除花瓣
-}
-setInterval(createSakura, 300); // 每300毫秒创建一个花瓣
+      function closePopup() {
+        document.getElementById('name-popup').style.display = 'none';
+        document.getElementById('popup-overlay').style.display = 'none';
+      }
 
-</script>
+      document.getElementById('popup-overlay').addEventListener('click', closePopup);
 
-</body>
-
+      function createSakura() {
+        const sakura = document.createElement('div');
+        sakura.className = 'sakura';
+        sakura.innerHTML = '🌸';
+        sakura.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
+        sakura.style.animationDuration = Math.random() * 3 + 2 + 's'; // 随机动画持续时间
+        sakura.style.fontSize = Math.random() * 10 + 10 + 'px'; // 随机大小
+        document.body.appendChild(sakura); // 将花瓣元素添加到页面中
+        setTimeout(() => sakura.remove(), 5000); // 5秒后移除花瓣
+      }
+      setInterval(createSakura, 300); // 每300毫秒创建一个花瓣
+    </script>
+  </body>
 </html>
+
+
