@@ -264,6 +264,18 @@ body {
       text-decoration: underline;
       background-color: #f0f0f0;
     }
+    .sakura {
+    position: fixed;
+    top: -10px;
+    pointer-events: none;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg); /* 向下掉落并旋转 */
+    }
+}
+
   </style>
 </head>
 
@@ -366,6 +378,19 @@ body {
 
   // 点击遮罩层时关闭弹窗
   document.getElementById('popup-overlay').addEventListener('click', closePopup);
+  
+  function createSakura() {
+    const sakura = document.createElement('div');
+    sakura.className = 'sakura';
+    sakura.innerHTML = '🌸';
+    sakura.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
+    sakura.style.animationDuration = Math.random() * 3 + 2 + 's'; // 随机动画持续时间
+    sakura.style.fontSize = Math.random() * 10 + 10 + 'px'; // 随机大小
+    document.body.appendChild(sakura); // 将花瓣元素添加到页面中
+    setTimeout(() => sakura.remove(), 5000); // 5秒后移除花瓣
+}
+setInterval(createSakura, 300); // 每300毫秒创建一个花瓣
+
 </script>
 
 </body>
