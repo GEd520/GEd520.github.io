@@ -16,7 +16,10 @@
       font-family: "Arial", sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #FFE8F0 0%, #E0F7FA 100%);
+      background: url("https://imgapi.cn/api.php?zd=mobile&fl=dongman&gs=images") no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
       height: 100vh;
       overflow-y: auto;
       display: flex;
@@ -50,7 +53,6 @@
       background-size: cover;
       background-repeat: no-repeat;
       z-index: -1;
-      /* opacity: 0.3; */ /* 删除或注释掉这行 */
     }
 
     .image-name {
@@ -66,18 +68,19 @@
       margin-top: 10px;
       font-weight: bold;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      padding: 10px; /* 增加内边距 */
-      border-radius: 10px; /* 添加圆角 */
-      animation: blink 3s infinite; /* 添加闪烁动画 */
+      padding: 10px;
+      border-radius: 10px;
+      animation: blink 3s infinite;
     }
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
 
     .rotating-image {
       width: 120px;
@@ -128,17 +131,22 @@
     .source-ydxg { background-color: #87CEEB; }
     .source-jmxg { background-color: #CCFFCC; }
     .source-kjsc { background-color: #CCFF; }
+/* 页面加载动画 */
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: loading 3.2s ease-in-out forwards;
+}
+
 
     footer {
-      background-color: #87CEEB;
-      color: #ffffff;
-      text-align: center;
-      padding: 1em 0;
-      width: 100%;
-      box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-  footer {
     background-color: #87CEEB;
     color: #ffffff;
     text-align: center;
@@ -147,68 +155,74 @@
     font-size: 14px;
   }
 
-  .friend-link {
-    display: inline-block;
-    background-color: #f0f0f0;
-    color: #333;
-    padding: 3px 8px; /* 减小内边距 */
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-    /* 弹窗样式 */
-   .popup {
+
+    .footer-visible {
+      bottom: 0; /* 滑动到屏幕底部 */
+    }
+
+    .friend-link {
+      display: inline-block;
+      background-color: #f0f0f0;
+      color: #333;
+      padding: 3px 8px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .friend-link:hover {
+      background-color: #e0e0e0;
+      transform: scale(1.05);
+    }
+
+    .popup {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: transparent; /* 设置为透明背景 */
+      background-color: transparent;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       z-index: 1000;
-      overflow: hidden; /* 防止内容溢出 */
-      padding: 0; /* 移除内边距 */
+      overflow: hidden;
+      padding: 0;
     }
 
-   .popup img {
-      width: 100%; /* 图片宽度占满弹窗 */
-      height: auto; /* 图片高度自适应 */
-      display: block; /* 去掉图片下方的空白间隙 */
-      border-radius: 10px; /* 与弹窗的圆角保持一致 */
+    .popup img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
     }
 
-  .friend-link:hover {
-    background-color: #e0e0e0;
-    transform: scale(1.05);
-  }
-  /* 弹窗样式 */
-  .popup-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
+    .popup-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-  .popup-content {
-  background-color: #F0F0F0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  width: 80%;
-  max-width: 400px;
-  max-height: 80vh; /* 限制最大高度为视口的80% */
-  overflow-y: auto; /* 添加垂直滚动条 */
-  position: relative;
-}
-   .popup-overlay {
+    .popup-content {
+      background-color: #F0F0F0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      width: 80%;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .popup-overlay {
       display: none;
       position: fixed;
       top: 0;
@@ -219,69 +233,69 @@
       z-index: 500;
     }
 
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-  }
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
 
-  .popup-content h3 {
-    margin-top: 0;
-  }
+    .popup-content h3 {
+      margin-top: 0;
+    }
 
-  .popup-content ul {
-    list-style-type: none;
-    padding: 0;
-  }
+    .popup-content ul {
+      list-style-type: none;
+      padding: 0;
+    }
 
-  .popup-content ul li a {
+    .popup-content ul li a {
       color: #333;
       text-decoration: none;
       display: block;
       margin: 5px 0;
       padding: 5px 10px;
-      border: 1px solid #333; /* 添加边框样式 */
-      border-radius: 5px; /* 添加圆角 */
+      border: 1px solid #333;
+      border-radius: 5px;
     }
 
-  .popup-content ul li a:hover {
+    .popup-content ul li a:hover {
       text-decoration: underline;
-      background-color: #f0f0f0; /* 鼠标悬停时的背景色 */
+      background-color: #f0f0f0;
     }
   </style>
 </head>
 
 <body>
   <div class="image-text-container">
-   <div class="text-and-image">
-  <img src="13f331fe4b8693510c09d600cb1601f4d873ca214a282746dc4fdcc80280086e.0.JPG" alt="头像" class="rotating-image">
-    <p class="image-name">
+    <div class="text-and-image">
+      <img src="13f331fe4b8693510c09d600cb1601f4d873ca214a282746dc4fdcc80280086e.0.JPG" alt="头像" class="rotating-image">
+      <p class="image-name">
       <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
     </p>
-  <p class="text" style="text-align: center;">你好，世界！欢迎来到辞之次元空间。
-   QQ群：1042530528 </p>
-   <a href="dsym.html"target="_blank">打赏作者</a>
-    </div>
-    <a href="/miyao.html" class="source-link source-ydxg" target="_blank">书源密钥</a>
-    <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
-    <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
-    <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
-    <a href="https://github.com/shidahuilang/" class="source-link source-dhlfby" target="_blank">大灰狼发布页</a>
-    <a href="http://srcbs.cn/other/3/msg.html" class="source-link source-ydgj" target="_blank">阅读工具</a>
-    <a href="https://github.com/Luoyacheng" class="source-link source-bzda" target="_blank">洛娅橙书库</a>
-    <a href="https://github.com/jiwangyihao/source-j-legado" class="source-link source-jlwh" target="_blank">吉义王昊书库</a>
-    <a href="http://fabu.yihulove.top/" class="source-link source-yxyck" target="_blank">yx源仓库</a>
-    <a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=" class="source-link source-yiove" target="_blank">yiove源仓库</a>
-    <a href="https://skybook.pages.dev/" class="source-link source-myzdj" target="_blank">明月照大江发布</a>
-    <a href="https://qyyuapi.com/" class="source-link source-xhfby" target="_blank">XH发布页</a>
-    <a href="https://blog.ttxz.eu.org/?path=%E9%98%85%E8%AF%BB/%E5%A4%A9%E5%A4%A9%E7%9A%84%E9%B8%9F%E8%9B%8B%E8%9B%8B%E7%9A%84%E4%B9%A6%E6%BA%90%E6%97%A5%E8%AE%B0.md" class="source-link source-ddrj" target="_blank">天天的鸟蛋蛋书源日记</a>
-    <a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830" class="source-link source-ydxg" target="_blank">阅读相关</a>
-    <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
-    <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
+    <p class="text" style="text-align: center;">你好，世界！欢迎来到辞之次元空间。
+     QQ群：1042530528 </p>
+    <a href="dsym.html"target="_blank">打赏作者</a>
   </div>
-<footer>
+  <a href="/miyao.html" class="source-link source-ydxg" target="_blank">书源密钥</a>
+  <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
+  <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
+  <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
+  <a href="https://github.com/shidahuilang/" class="source-link source-dhlfby" target="_blank">大灰狼发布页</a>
+  <a href="http://srcbs.cn/other/3/msg.html" class="source-link source-ydgj" target="_blank">阅读工具</a>
+  <a href="https://github.com/Luoyacheng" class="source-link source-bzda" target="_blank">洛娅橙书库</a>
+  <a href="https://github.com/jiwangyihao/source-j-legado" class="source-link source-jlwh" target="_blank">吉义王昊书库</a>
+  <a href="http://fabu.yihulove.top/" class="source-link source-yxyck" target="_blank">yx源仓库</a>
+  <a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=" class="source-link source-yiove" target="_blank">yiove源仓库</a>
+  <a href="https://skybook.pages.dev/" class="source-link source-myzdj" target="_blank">明月照大江发布</a>
+  <a href="https://qyyuapi.com/" class="source-link source-xhfby" target="_blank">XH发布页</a>
+  <a href="https://blog.ttxz.eu.org/?path=%E9%98%85%E8%AF%BB/%E5%A4%A9%E5%A4%A9%E7%9A%84%E9%B8%9F%E8%9B%8B%E8%9B%8B%E7%9A%84%E4%B9%A6%E6%BA%90%E6%97%A5%E8%AE%B0.md" class="source-link source-ddrj" target="_blank">天天的鸟蛋蛋书源日记</a>
+  <a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830" class="source-link source-ydxg" target="_blank">阅读相关</a>
+  <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
+  <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
+</div>
+<footer id="footer">
   <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
   <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
     <a href="https://blog.ttxz.eu.org" target="_blank" class="friend-link">天天的小站</a>
@@ -312,13 +326,23 @@
        <li><a href="https://sbtool.us.kg/" target="_blank">🍟的工具箱</a></li>
        <li><a href="http://fb.shushan.vip:9999/" target="_blank">书山发布页</a></li>
        <li><a href="https://jingluo.love/" target="_blank">🐋鲸落博客</a></li>
-       <li><a href="https://www.yesui.me" target="_blank">情无羁的世界</li>
+       <li><a href="https://www.yesui.me" target="_blank">情无羁的世界</a></li>
       <!-- 添加更多链接 -->
       <!-- 如果链接很多，弹窗会自动显示滚动条 -->
     </ul>
   </div>
 </div>
 <script>
+  // 滑动显示页脚
+  window.addEventListener('scroll', function() {
+    var footer = document.getElementById('footer');
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+      footer.classList.add('footer-visible');
+    } else {
+      footer.classList.remove('footer-visible');
+    }
+  });
+
   function togglePopup() {
     var popup = document.getElementById("popup");
     if (popup.style.display === "none") {
@@ -327,21 +351,21 @@
       popup.style.display = "none";
     }
   }
- // 显示弹窗
-    function showNamePopup() {
-        document.getElementById('name-popup').style.display = 'flex';
-        document.getElementById('popup-overlay').style.display = 'block';
-    }
 
-    // 关闭弹窗
-    function closePopup() {
-        document.getElementById('name-popup').style.display = 'none';
-        document.getElementById('popup-overlay').style.display = 'none';
-    }
+  // 显示弹窗
+  function showNamePopup() {
+    document.getElementById('name-popup').style.display = 'flex';
+    document.getElementById('popup-overlay').style.display = 'block';
+  }
 
-    // 点击遮罩层时关闭弹窗
-    document.getElementById('popup-overlay').addEventListener('click', closePopup);
+  // 关闭弹窗
+  function closePopup() {
+    document.getElementById('name-popup').style.display = 'none';
+    document.getElementById('popup-overlay').style.display = 'none';
+  }
 
+  // 点击遮罩层时关闭弹窗
+  document.getElementById('popup-overlay').addEventListener('click', closePopup);
 </script>
 
 </body>
