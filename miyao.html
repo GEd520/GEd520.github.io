@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,11 @@
             font-family: "微软雅黑", Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f5;
+            background: url("https://imgapi.cn/api.php?zd=mobile&fl=dongman&gs=images") no-repeat center center;
+            margin:0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,19 +23,27 @@
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #fff;
             margin-bottom: 20px;
             font-size: 1.8em;
+            animation: fadeIn 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         #container {
             max-width: 600px;
             margin: 0 auto;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.8); /* 添加半透明背景 */
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        #container:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
         }
 
         #result {
@@ -42,13 +55,170 @@
             padding: 15px;
             border-radius: 10px;
             border: 1px solid #ddd;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 0.9em;
+            background: linear-gradient(to right, #4CAF50, #45a049);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #45a049, #4CAF50);
+        }
+
+        button.loading {
+            background: linear-gradient(to right, #ccc, #ccc) no-repeat;
+            background-size: 100% 100%;
+            animation: progress 2s linear infinite;
+        }
+
+        @keyframes progress {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.4em;
+            }
+
+            button {
+                font-size: 0.8em;
+            }
+        }
+
+        /* 新增的复制按钮样式 */
+        #copyButton {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 0.9em;
+            background: linear-gradient(to right, #2196F3, #1976D2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #copyButton:hover {
+            background: linear-gradient(to right, #1976D2, #2196F3);
         }
     </style>
 </head>
+
 <body>
     <div id="container">
         <h1>密钥生成</h1>
-        <div id="result">密钥生成功能暂时关闭</div>
+        <button id="generateButton">生成密钥</button>
+        <div id="result"></div>
+        <!-- 新增的复制按钮 -->
+        <button id="copyButton" style="display:none;">复制密钥</button>
     </div>
+
+    <script>
+        // 生成指定长度的随机Base64字符串
+        function generateRandomBase64(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        // 将字符串转换为Base64
+        function toBase64(str) {
+            return btoa(str);
+        }
+
+        // 生成最终的密钥
+        function generateKey() {
+            // 获取当前日期
+            let now = new Date();
+            let year = now.getFullYear();
+            let month = String(now.getMonth() + 1).padStart(2, '0');
+            let day = String(now.getDate()).padStart(2, '0');
+            let datePart = `${year}${month}${day}`;
+
+            // 将日期部分转换为Base64
+            let base64DatePart = toBase64(datePart);
+
+            // 生成随机长度的前缀和后缀（4 - 8位）
+            let prefixLength = Math.floor(Math.random() * 5) + 4;
+            let suffixLength = Math.floor(Math.random() * 5) + 4;
+
+            // 生成随机Base64字符串作为前缀和后缀
+            let prefix = generateRandomBase64(prefixLength);
+            let suffix = generateRandomBase64(suffixLength);
+
+            // 将它们组合在一起
+            return `${prefix}${base64DatePart}${suffix}`;
+        }
+
+        // 按钮点击事件
+        document.getElementById('generateButton').addEventListener('click', function () {
+            this.classList.add('loading');
+            this.disabled = true;
+            let resultDiv = document.getElementById('result');
+            let copyButton = document.getElementById('copyButton');
+            resultDiv.style.opacity = 0;
+            setTimeout(() => {
+                let key = generateKey();
+                resultDiv.innerText = `${key}`;
+                resultDiv.style.opacity = 1;
+                copyButton.style.display = 'block';
+                this.classList.remove('loading');
+                this.disabled = false;
+            }, 1000);
+        });
+
+        // 复制按钮点击事件
+        document.getElementById('copyButton').addEventListener('click', async function () {
+            let resultDiv = document.getElementById('result');
+            try {
+                await navigator.clipboard.writeText(resultDiv.innerText);
+                this.textContent = '复制成功';
+                setTimeout(() => {
+                    this.textContent = '复制密钥';
+                }, 1500);
+            } catch (err) {
+                console.error('复制文本到剪贴板时出错:', err);
+                this.textContent = '复制失败';
+                setTimeout(() => {
+                    this.textContent = '复制密钥';
+                }, 1500);
+            }
+        });
+    </script>
 </body>
+
 </html>
