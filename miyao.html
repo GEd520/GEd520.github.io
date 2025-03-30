@@ -191,8 +191,14 @@
             let now = new Date();
             let year = now.getFullYear();
             let month = String(now.getMonth() + 1).padStart(2, '0');
-            let day = String(now.getDate()).padStart(2, '0');
-            let datePart = `${year}${month}${day}`;
+            // 计算当前日期是五天周期的第几天
+            let dayInCycle = Math.floor((now.getDate() - 1) / 5);
+            // 生成五天周期的日期字符串
+            let cycleStartDate = new Date(now.getFullYear(), now.getMonth(), dayInCycle * 5 + 1);
+            let cycleYear = cycleStartDate.getFullYear();
+            let cycleMonth = String(cycleStartDate.getMonth() + 1).padStart(2, '0');
+            let cycleDay = String(cycleStartDate.getDate()).padStart(2, '0');
+            let datePart = `${cycleYear}${cycleMonth}${cycleDay}`;
 
             // 将日期部分转换为Base64
             let base64DatePart = toBase64(datePart);
