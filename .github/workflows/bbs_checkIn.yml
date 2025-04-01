@@ -1,0 +1,25 @@
+name: Run bbs qiandao
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 20 * * *' # 每天04:00运行一次
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      HOSTNAME: ${{ secrets.HOSTNAME }}
+      USERNAME: ${{ secrets.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      UID: ${{ secrets.UID }}
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - run: pip install -r ./.github/scripts/requirements.txt
+      - run: python ./.github/scripts/qiandao.py
