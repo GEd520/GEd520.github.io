@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@
             margin: 0;
             padding: 0;
             background: url("http://api.mysqil.com/pe.php") no-repeat center center;
-            margin:0;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -31,9 +29,9 @@
         }
 
         #container {
-            max-width: 600px;
+            width: 80%;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.8); /* 添加半透明背景 */
+            background: rgba(255, 255, 255, 0.8);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -48,7 +46,7 @@
 
         #result {
             margin-top: 20px;
-            font-size: 1em;
+            font-size: 0.8em;
             color: #333;
             word-wrap: break-word;
             background-color: #f9f9f9;
@@ -114,7 +112,6 @@
             }
         }
 
-        /* 新增的复制按钮样式 */
         #copyButton {
             display: block;
             width: 100%;
@@ -132,45 +129,44 @@
         #copyButton:hover {
             background: linear-gradient(to right, #1976D2, #2196F3);
         }
-                    /* 页面加载动画 */
-    @keyframes loading {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
 
-    body {
-      animation: loading 3.2s ease-in-out forwards;
-    }
+        @keyframes loading {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        body {
+            animation: loading 3.2s ease-in-out forwards;
+        }
+
         .sakura {
-    position: fixed;
-    top: -10px;
-    pointer-events: none;
-    animation: fall linear infinite;
-}
-@keyframes fall {
-    to {
-        transform: translateY(100vh) rotate(360deg); /* 向下掉落并旋转 */
-    }
-}
+            position: fixed;
+            top: -10px;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
 
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
     </style>
 </head>
-
 <body>
     <div id="container">
         <h1>密钥生成</h1>
         <button id="generateButton">生成密钥</button>
         <div id="result"></div>
-        <!-- 新增的复制按钮 -->
         <button id="copyButton" style="display:none;">复制密钥</button>
     </div>
 
     <script>
-        // 生成指定长度的随机Base64字符串
         function generateRandomBase64(length) {
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
             let result = '';
@@ -180,42 +176,32 @@
             return result;
         }
 
-        // 将字符串转换为Base64
         function toBase64(str) {
             return btoa(str);
         }
 
-        // 生成最终的密钥
         function generateKey() {
-            // 获取当前日期
             let now = new Date();
             let year = now.getFullYear();
             let month = String(now.getMonth() + 1).padStart(2, '0');
-            // 计算当前日期是七天周期的第几天
-            let dayInCycle = Math.floor((now.getDate() - 1) / 7);
-            // 生成七天周期的日期字符串
-            let cycleStartDate = new Date(now.getFullYear(), now.getMonth(), dayInCycle * 7 + 1);
+            let dayInCycle = Math.floor((now.getDate() - 1) / 3);
+            let cycleStartDate = new Date(now.getFullYear(), now.getMonth(), dayInCycle * 3 + 1);
             let cycleYear = cycleStartDate.getFullYear();
             let cycleMonth = String(cycleStartDate.getMonth() + 1).padStart(2, '0');
             let cycleDay = String(cycleStartDate.getDate()).padStart(2, '0');
             let datePart = `${cycleYear}${cycleMonth}${cycleDay}`;
 
-            // 将日期部分转换为Base64
             let base64DatePart = toBase64(datePart);
 
-            // 生成随机长度的前缀和后缀（4 - 8位）
-            let prefixLength = Math.floor(Math.random() * 5) + 4;
-            let suffixLength = Math.floor(Math.random() * 5) + 4;
+            let prefixLength = Math.floor(Math.random() * 26) + 35;
+            let suffixLength = Math.floor(Math.random() * 26) + 35;
 
-            // 生成随机Base64字符串作为前缀和后缀
             let prefix = generateRandomBase64(prefixLength);
             let suffix = generateRandomBase64(suffixLength);
 
-            // 将它们组合在一起
             return `${prefix}${base64DatePart}${suffix}`;
         }
 
-        // 按钮点击事件
         document.getElementById('generateButton').addEventListener('click', function () {
             this.classList.add('loading');
             this.disabled = true;
@@ -232,35 +218,43 @@
             }, 1000);
         });
 
-        // 复制按钮点击事件
-        document.getElementById('copyButton').addEventListener('click', async function () {
-        let resultDiv = document            .getElementById('result');
+        document.getElementById('copyButton').addEventListener('click', function () {
+            let resultDiv = document.getElementById('result');
+            let textArea = document.createElement('textarea');
+            textArea.value = resultDiv.innerText;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
             try {
-                await navigator.clipboard.writeText(resultDiv.innerText);
-                this.textContent = '复制成功';
+                let successful = document.execCommand('copy');
+                let msg = successful ? '复制成功' : '复制失败';
+                this.textContent = msg;
                 setTimeout(() => {
                     this.textContent = '复制密钥';
                 }, 1500);
-            } catch (err) {
+                        } catch (err) {
                 console.error('复制文本到剪贴板时出错:', err);
                 this.textContent = '复制失败';
                 setTimeout(() => {
                     this.textContent = '复制密钥';
                 }, 1500);
             }
+            document.body.removeChild(textArea);
         });
+
         function createSakura() {
             const sakura = document.createElement('div');
             sakura.className = 'sakura';
             sakura.innerHTML = '🌸';
-            sakura.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
-            sakura.style.animationDuration = Math.random() * 3 + 2 + 's'; // 随机动画持续时间
-            sakura.style.fontSize = Math.random() * 10 + 10 + 'px'; // 随机大小
-            document.body.appendChild(sakura); // 将花瓣元素添加到页面中
-            setTimeout(() => sakura.remove(), 5000); // 5秒后移除花瓣
+            sakura.style.left = Math.random() * 100 + 'vw';
+            sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+            sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+            document.body.appendChild(sakura);
+            setTimeout(() => sakura.remove(), 5000);
         }
-        setInterval(createSakura, 300); // 每300毫秒创建一个花瓣
+        setInterval(createSakura, 300);
     </script>
 </body>
-
 </html>
