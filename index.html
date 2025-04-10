@@ -148,32 +148,41 @@
     }
 
     .icon-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      width: 100%;
-      padding: 0;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0;
+  position: relative; /* 确保子元素的绝对定位基于这个容器 */
+}
 
-    .icon-button {
-      background-color: white;
-      color: #666666;
-      padding: 5px;
-      border-radius: 50%;
-      width: 25px;
-      height: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-decoration: none;
-      margin: 0;
-    }
+.icon-button {
+  background-color: white;
+  color: #666666;
+  padding: 5px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  margin: 0;
+  position: relative;
+}
 
-    .icon-button:hover {
-      background-color: #555;
-    }
+.icon-button:hover {
+  background-color: #555;
+}
+
+footer p {
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
 
     .popup {
       display: none;
@@ -267,22 +276,23 @@
     </div>
   </main>
   <footer>
-    <div class="icon-container">
-      <a class="icon-button" onclick="showQQPopup()">
-        <i class="fab fa-qq" style="font-size: 20px;"></i>
-      </a>
-      <a href="https://m.bilibili.com/" class="icon-button" target="_blank">
-        <i class="fa-brands fa-bilibili"></i>
-      </a>
-      <a href="https://github.com" class="icon-button" target="_blank">
-        <i class="fab fa-github" style="font-size: 20px;"></i>
-      </a>
-      <a href="mailto:3330253407@qq.com" class="icon-button">
-        <i class="fas fa-envelope" style="font-size: 20px;"></i>
-      </a>
-    </div>
-    <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
-  </footer>
+  <div class="icon-container">
+    <a class="icon-button" onclick="showQQPopup()">
+      <i class="fab fa-qq" style="font-size: 20px;"></i>
+    </a>
+    <a href="https://m.bilibili.com/" class="icon-button" target="_blank">
+      <i class="fa-brands fa-bilibili"></i>
+    </a>
+    <a href="https://github.com" class="icon-button" target="_blank">
+      <i class="fab fa-github" style="font-size: 20px;"></i>
+    </a>
+    <a href="mailto:3330253407@qq.com" class="icon-button">
+      <i class="fas fa-envelope" style="font-size: 20px;"></i>
+    </a>
+  </div>
+  <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
+</footer>
+
   <div class="popup" id="name-popup">
     <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
   </div>
