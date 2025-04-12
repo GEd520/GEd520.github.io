@@ -10,29 +10,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#eee">
   <title>辞之次元空间</title>
-
+  
   <style>
     body {
-      font-family: "Arial", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url("https://imgapi.cn/api.php?zd=mobile&fl=dongman&gs=images") no-repeat center center;
-      background-size: cover;
-      background-attachment: fixed;
-      margin: 0;
-      weight: 100%;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    display: grid;
+    grid-template-areas:
+      "header"
+      "content"
+      "footer";
+    grid-template-rows: auto auto auto;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: url("https://imgapi.cn/api.php?zd=mobile&fl=dongman&gs=images") no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Arial", sans-serif;
+  }
+    body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); 
+  z-index: -1;
+}
 
     .image-text-container {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-    }
-
+    grid-area: content;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+    footer {
+    grid-area: footer;
+    background-color: rgba(240, 248, 255, 0.5);
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
     .text-and-image {
       background-color: rgba(0, 255, 255, 0.1);
       position: relative;
@@ -41,7 +61,9 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       text-align: center;
     }
-
+    .text-and-image:hover {
+    transform: scale(1.02);
+  }
     .text-and-image::before {
       content: "";
       position: absolute;
@@ -73,8 +95,7 @@
       border-radius: 10px;
       animation: blink 3s infinite;
     }
-
-    @keyframes blink {
+     @keyframes blink {
       0%, 100% {
         opacity: 1;
       }
@@ -82,7 +103,6 @@
         opacity: 0;
       }
     }
-
     .rotating-image {
       width: 120px;
       height: 120px;
@@ -100,6 +120,34 @@
         transform: rotate(360deg);
       }
     }
+    .donate-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: white; 
+    font-weight: bold;
+  }
+  
+    .source-miyao {
+    text-decoration: none;
+    font-size: 20px;
+    color: #333; 
+    font-weight: bold;
+    margin: 13px;
+    background-color: #f5f5f5;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+    .source-link{
+            display: inline-block;
+            border-radius: 10px;
+            padding: 7px 30px;
+            color: #fff;
+            border: 1px solid;
+            text-decoration: none;
+            margin: 5px;
+            font-weight: bold;
+        }
 
     .source-link {
       display: block;
@@ -117,22 +165,7 @@
       transform: scale(1.05);
     }
 
-    .source-ysqfby { background-color: #ff9900; }
-    .source-repository { background-color: #0099ff; }
-    .source-yolo { background-color: green; }
-    .source-dhlfby { background-color: red; }
-    .source-ydgj { background-color: pink; }
-    .source-bzda { background-color: #CCFF; }
-    .source-jlwh { background-color: #00FF80; }
-    .source-yxyck { background-color: #87CEEB; }
-    .source-yiove { background-color: #FF4500; }
-    .source-myzdj { background-color: #87CE; }
-    .source-xhfby { background-color: pink; }
-    .source-ddrj { background-color: #80FF80; }
-    .source-ydxg { background-color: #87CEEB; }
-    .source-jmxg { background-color: #CCFFCC; }
-    .source-kjsc { background-color: #CCFF; }
-    .source-qwjsy { background-color: #ff9900; }
+    
     /* 页面加载动画 */
     @keyframes loading {
       0% {
@@ -278,12 +311,68 @@
         transform: translateY(100vh) rotate(360deg); /* 向下掉落并旋转 */
       }
     }
-    .donate-link {
-    text-decoration: none;
-    font-size: 18px;
-    color: white; 
-    font-weight: bold;
-  }
+      font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+     .container {
+            padding: 20px;
+        }
+     .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .card-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #666;
+        }
+        .card-content {
+            flex: 1;
+        }
+        .card-title {
+            font-size: 16px;
+            margin: 0 0 5px;
+        }
+        .card-description {
+            font-size: 14px;
+            color: #666;
+        }
+        .card-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .card-button:hover {
+            background-color: #45a049;
+        }
+        .output-text {
+    font-size: 2.3vh;
+    color: #fff;
+    font-family: "Microsoft JhengHei", "新細明體", sans-serif;
+    text-align: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+
   </style>
 </head>
 
@@ -299,25 +388,24 @@
       <a href="dsym.html" target="_blank" class="donate-link">打赏作者</a>
     </div
     </div>
-    <a href="/miyao.html" class="source-link source-ydxg" target="_blank">书源密钥</a>
+    <p id="output" class="output-text">
+    <!-- 内容将在这里显示 -->
+    </p>
+    <a href="/miyao.html" class="source-miyao" target="_blank">🔑书源密钥🔑</a>
     <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
     <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
     <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
-    <a href="https://github.com/shidahuilang/" class="source-link source-dhlfby" target="_blank">大灰狼发布页</a>
-    <a href="http://srcbs.cn/other/3/msg.html" class="source-link source-ydgj" target="_blank">阅读工具</a>
-    <a href="https://github.com/Luoyacheng" class="source-link source-bzda" target="_blank">洛娅橙书库</a>
-    <a href="https://github.com/jiwangyihao/source-j-legado" class="source-link source-jlwh" target="_blank">吉义王昊书库</a>
-    <a href="http://fabu.yihulove.top/" class="source-link source-yxyck" target="_blank">yx源仓库</a>
-    <a href="https://shuyuan.yiove.com/complex?page=1&size=10&search_key=" class="source-link source-yiove" target="_blank">yiove源仓库</a>
-    <a href="https://skybook.pages.dev/" class="source-link source-myzdj" target="_blank">明月照大江发布</a>
-    <a href="https://qyyuapi.com/" class="source-link source-xhfby" target="_blank">XH发布页</a>
-    <a href="https://blog.ttxz.eu.org/?path=%E9%98%85%E8%AF%BB/%E5%A4%A9%E5%A4%A9%E7%9A%84%E9%B8%9F%E8%9B%8B%E8%9B%8B%E7%9A%84%E4%B9%A6%E6%BA%90%E6%97%A5%E8%AE%B0.md" class="source-link source-ddrj" target="_blank">天天的鸟蛋蛋书源日记</a>
-    <a href="https://flowus.cn/yuanjinwu/share/f0921d86-9119-44ae-8c6b-7864eb8ec830" class="source-link source-ydxg" target="_blank">阅读相关</a>
-    <a href="https://gitee.com/lff283/syrj/" class="source-link source-jmxg" target="_blank">活力宝/书源日记</a>
-    <a href="https://www.yesui.me/fabu.dev" class="source-link source-qwjsy" target="_blank">情无羁书源仓库</a>
-     <a href="https://www.yuque.com/legado/pd/rp3gdumplxqc3oo2" class="source-link source-xhfby" target="_blank">阅读资源站</a>
-     <a href="https://www.yuque.com/120031xufengnian/yuedu/la1neg1xmgtdyp9a" class="source-link source-yxyck" target="_blank">阅读导航</a>
-    <a href="/index2.html" class="source-link source-kjsc" target="_blank">辞之次元空间</a>
+    <a href="/dsym.html" class="source-link" target="_blank">支持一下</a>
+    <div class="container">
+        <div class="card">
+            <div class="card-icon">🔗</div>
+            <div class="card-content">
+                <div class="card-title">链接合集</div>
+                <div class="card-description">获取更多链接</div>
+            </div>
+            <a href="/ljhjm.html" class="card-button">访问</a>
+        </div>
+    
   </div>
   <footer id="footer" class="footer-visible">
     <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
@@ -362,16 +450,30 @@
         return window.innerHeight + window.scrollY >= document.body.offsetHeight;
       }
 
-      function toggleFooterVisibility() {
-        const footer = document.getElementById('footer');
-        if (isScrolledToBottom()) {
-          footer.style.opacity = '1'; // 显示页尾
-        } else {
-          footer.style.opacity = '0'; // 隐藏页尾
-        }
-      }
+      // 弹窗显示和隐藏
+  function togglePopup() {
+    document.getElementById('popup').style.display = document.getElementById('popup').style.display === 'none' ? 'flex' : 'none';
+  }
 
-      window.addEventListener('scroll', throttle(toggleFooterVisibility, 100));
+  // 滚动加载效果
+  window.addEventListener('scroll', () => {
+  const footer = document.getElementById('footer');
+  const footerHeight = footer.offsetHeight;
+  const scrollPosition = window.innerHeight + window.scrollY;
+  const documentHeight = document.body.scrollHeight;
+
+  if (scrollPosition >= documentHeight - footerHeight) {
+    footer.style.opacity = '1';
+  } else {
+    footer.style.opacity = '0';
+  }
+});
+
+// 页面加载时调用一次滚动事件处理函数
+window.addEventListener('load', () => {
+  window.dispatchEvent(new Event('scroll'));
+});
+
 
       function throttle(func, limit) {
         let lastFunc;
@@ -419,13 +521,34 @@
         const sakura = document.createElement('div');
         sakura.className = 'sakura';
         sakura.innerHTML = '🌸';
-        sakura.style.left = Math.random() * 100 + 'vw'; // 随机水平位置
-        sakura.style.animationDuration = Math.random() * 3 + 2 + 's'; // 随机动画持续时间
-        sakura.style.fontSize = Math.random() * 10 + 10 + 'px'; // 随机大小
-        document.body.appendChild(sakura); // 将花瓣元素添加到页面中
-        setTimeout(() => sakura.remove(), 5000); // 5秒后移除花瓣
+        sakura.style.left = Math.random() * 100 + 'vw';
+        sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+        sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+        document.body.appendChild(sakura);
+        setTimeout(() => sakura.remove(), 5000);
       }
-      setInterval(createSakura, 300); // 每300毫秒创建一个花瓣
+      setInterval(createSakura, 300);
+      
+      // Replace this URL with the API you want to access
+            const apiUrl = 'https://api.qqsuu.cn/api/dm-djtang';
+
+            // Function to fetch data from the API and display it on the page
+            async function fetchData() {
+                try {
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+                    // 获取content属性的值
+                    const content = data.data.content;
+                    // 将content的值设置为<p>元素的文本内容
+                    document.getElementById('output').textContent = content;
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('output').textContent = 'Error fetching data';
+                }
+            }
+
+            // Call the fetchData function to access the API and display the data
+            fetchData();
     </script>
   </body>
 </html>
