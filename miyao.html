@@ -1,260 +1,99 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html data-theme="light" class="">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>密钥生成</title>
-    <style>
-        body {
-            font-family: "微软雅黑", Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url("http://api.mysqil.com/pe.php") no-repeat center center;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta content="always" name="referrer">
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/50"> <!-- 添加一个占位图标 -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#eee">
+  <title>辞之次元空间</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FFD9E6;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
 
-        h1 {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            animation: fadeIn 1s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
+    .content {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+    }
 
-        #container {
-            width: 80%;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
+    p.text {
+      color: #333;
+      font-size: 20px;
+      margin: 0;
+    }
 
-        #container:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            transform: translateY(-5px);
-        }
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-top: 10px;
+    }
 
-        #result {
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: #333;
-            word-wrap: break-word;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
+    .ghost {
+      font-size: 24px;
+      color: #666;
+      margin-top: 20px;
+    }
 
-        button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            font-size: 0.9em;
-            background: linear-gradient(to right, #4CAF50, #45a049);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background: linear-gradient(to right, #45a049, #4CAF50);
-        }
-
-        button.loading {
-            background: linear-gradient(to right, #ccc, #ccc) no-repeat;
-            background-size: 100% 100%;
-            animation: progress 2s linear infinite;
-        }
-
-        @keyframes progress {
-            0% {
-                background-position: 0 0;
-            }
-
-            100% {
-                background-position: -100% 0;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.4em;
-            }
-
-            button {
-                font-size: 0.8em;
-            }
-        }
-
-        #copyButton {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            font-size: 0.9em;
-            background: linear-gradient(to right, #2196F3, #1976D2);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin-top: 10px;
-        }
-
-        #copyButton:hover {
-            background: linear-gradient(to right, #1976D2, #2196F3);
-        }
-
-        @keyframes loading {
-            0% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
-        body {
-            animation: loading 3.2s ease-in-out forwards;
-        }
-
-        .sakura {
-            position: fixed;
-            top: -10px;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
-    </style>
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #555;
+    }
+    .sakura {
+      position: fixed;
+      top: -10px;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div id="container">
-        <h1>密钥生成</h1>
-        <button id="generateButton">生成密钥</button>
-        <div id="result"></div>
-        <button id="copyButton" style="display:none;">复制密钥</button>
-    </div>
+  <div class="content">
+    <p class="text">欢迎来到辞之次元空间</p>
+    <p class="subtitle">一个充满想象的世界</p>
+    <p class="ghost"> <a href="https://ysqbbs.com/thread-39292-1-1.html" target="_blank" style="color: #ff69b4; text-decoration: none; font-weight: bold;">密钥转跳，点击访问更多</a></p>
 
-    <script>
-        function generateRandomBase64(length) {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-            let result = '';
-            for (let i = 0; i < length; i++) {
-                result += characters.charAt(Math.floor(Math.random() * characters.length));
-            }
-            return result;
-        }
 
-        function toBase64(str) {
-            return btoa(str);
-        }
-
-        function generateKey() {
-            let now = new Date();
-            let year = now.getFullYear();
-            let month = String(now.getMonth() + 1).padStart(2, '0');
-            let dayInCycle = Math.floor((now.getDate() - 1) / 3);
-            let cycleStartDate = new Date(now.getFullYear(), now.getMonth(), dayInCycle * 3 + 1);
-            let cycleYear = cycleStartDate.getFullYear();
-            let cycleMonth = String(cycleStartDate.getMonth() + 1).padStart(2, '0');
-            let cycleDay = String(cycleStartDate.getDate()).padStart(2, '0');
-            let datePart = `${cycleYear}${cycleMonth}${cycleDay}`;
-
-            let base64DatePart = toBase64(datePart);
-
-            let prefixLength = Math.floor(Math.random() * 26) + 35;
-            let suffixLength = Math.floor(Math.random() * 26) + 35;
-
-            let prefix = generateRandomBase64(prefixLength);
-            let suffix = generateRandomBase64(suffixLength);
-
-            return `${prefix}${base64DatePart}${suffix}`;
-        }
-
-        document.getElementById('generateButton').addEventListener('click', function () {
-            this.classList.add('loading');
-            this.disabled = true;
-            let resultDiv = document.getElementById('result');
-            let copyButton = document.getElementById('copyButton');
-            resultDiv.style.opacity = 0;
-            setTimeout(() => {
-                let key = generateKey();
-                resultDiv.innerText = `${key}`;
-                resultDiv.style.opacity = 1;
-                copyButton.style.display = 'block';
-                this.classList.remove('loading');
-                this.disabled = false;
-            }, 1000);
-        });
-
-        document.getElementById('copyButton').addEventListener('click', function () {
-            let resultDiv = document.getElementById('result');
-            let textArea = document.createElement('textarea');
-            textArea.value = resultDiv.innerText;
-            textArea.style.position = 'fixed';
-            textArea.style.opacity = '0';
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                let successful = document.execCommand('copy');
-                let msg = successful ? '复制成功' : '复制失败';
-                this.textContent = msg;
-                setTimeout(() => {
-                    this.textContent = '复制密钥';
-                }, 1500);
-                        } catch (err) {
-                console.error('复制文本到剪贴板时出错:', err);
-                this.textContent = '复制失败';
-                setTimeout(() => {
-                    this.textContent = '复制密钥';
-                }, 1500);
-            }
-            document.body.removeChild(textArea);
-        });
-
-        function createSakura() {
-            const sakura = document.createElement('div');
-            sakura.className = 'sakura';
-            sakura.innerHTML = '🌸';
-            sakura.style.left = Math.random() * 100 + 'vw';
-            sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
-            sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
-            document.body.appendChild(sakura);
-            setTimeout(() => sakura.remove(), 5000);
-        }
-        setInterval(createSakura, 300);
-    </script>
+  </div>
+  <div class="footer">
+    <p>版权所有 © 2025 辞晨</p>
+  </div>
+  <script>
+  function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + 'vw';
+      sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+      sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 5000);
+    }
+    setInterval(createSakura, 300);
+  </script>
 </body>
+
 </html>
