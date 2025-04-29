@@ -12,30 +12,30 @@
   <title>辞之次元</title>
   <style>
     body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background: url("http://api.mysqil.com/pe.php") no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed;
-  margin: 0;
-  height: 100%;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative; /* 确保背景遮罩的定位 */
-}
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("http://api.mysqil.com/pe.php") no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative; /* 确保背景遮罩的定位 */
+    }
 
-.background-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.28);
-  z-index: -1;
-}
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.28);
+      z-index: -1;
+    }
 
     header {
       background-color: #ff69b4;
@@ -51,13 +51,14 @@
 
     main {
       padding: 2em;
+      flex: 1; /* 让main占据剩余空间 */
     }
 
     .intro {
       text-align: center;
       font-size: 2em;
       font-weight: bold;
-      color:white;
+      color: white;
     }
 
     .dynamic-text {
@@ -111,9 +112,9 @@
       color: #333;
       text-align: center;
       padding: 0.7em 0;
-      position: fixed;
+      position: relative; /* 修改为相对定位 */
       width: 100%;
-      bottom: 0;
+      bottom: auto; /* 移除底部固定 */
       font-weight: bold;
     }
 
@@ -158,42 +159,41 @@
       background-color: rgba(240, 248, 255, 0.5);
     }
 
- .icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  padding: 0;
-  position: relative; /* 确保子元素的绝对定位基于这个容器 */
-}
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      padding: 0;
+      position: relative; /* 确保子元素的绝对定位基于这个容器 */
+    }
 
-  .icon-button {
-  background-color: white;
-  color: #666666;
-  padding: 5px;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  text-decoration: none;
-  margin: 0;
-  position: relative;
-}
+    .icon-button {
+      background-color: white;
+      color: #666666;
+      padding: 5px;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      margin: 0;
+      position: relative;
+    }
 
-   .icon-button:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 图标添加阴影效果 */
-}
+    .icon-button:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 图标添加阴影效果 */
+    }
 
     footer p {
-  margin-top: 10px;
-  text-align: center;
-  font-weight: bold;
-}
-
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
 
     .popup {
       display: none;
@@ -282,27 +282,27 @@
     <a href="./index1.html">辞之次元</a>
     <div class="app-intro">
       <p>「阅读」APP是一款高度自由化的开源阅读工具，其核心设计理念是赋予用户完全自主的内容控制权。</p>
-      <p>与传统阅读软件不同，该应用本身不提供任何预设内容，而是作为一个强大的内容聚合容器，用户需要自行配置或导入书源来实现阅读功能。</p>
+      <p>与传统阅读软件不同，该应用本身不提供      任何预设内容，而是作为一个强大的内容聚合容器，用户需要自行配置或导入书源来实现阅读功能。</p>
       <p>软件本身完全无广，免费。请前往GitHub官网进行下载正版。</p>
     </div>
   </main>
   <footer>
-  <div class="icon-container">
-    <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=knuWBSsvUDBfS-pYi_-rIRQDLAmR9DdF&authKey=XFkRe35M3vULzYflP2TyzMlgivGOMYruT6KGTvbpFV6P8TF0z1Pw9yJPGzWfUO0L&noverify=0&group_code=1042530528" class="icon-button" target="_blank">
-  <i class="fab fa-qq" style="font-size: 20px;"></i>
-    </a>
-    <a href="https://m.bilibili.com/" class="icon-button" target="_blank">
-      <i class="fa-brands fa-bilibili"></i>
-    </a>
-    <a href="https://github.com" class="icon-button" target="_blank">
-      <i class="fab fa-github" style="font-size: 20px;"></i>
-    </a>
-    <a href="mailto:3330253407@qq.com" class="icon-button">
-      <i class="fas fa-envelope" style="font-size: 20px;"></i>
-    </a>
-  </div>
-  <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
-</footer>
+    <div class="icon-container">
+      <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=knuWBSsvUDBfS-pYi_-rIRQDLAmR9DdF&authKey=XFkRe35M3vULzYflP2TyzMlgivGOMYruT6KGTvbpFV6P8TF0z1Pw9yJPGzWfUO0L&noverify=0&group_code=1042530528" class="icon-button" target="_blank">
+        <i class="fab fa-qq" style="font-size: 20px;"></i>
+      </a>
+      <a href="https://m.bilibili.com/" class="icon-button" target="_blank">
+        <i class="fa-brands fa-bilibili"></i>
+      </a>
+      <a href="https://github.com" class="icon-button" target="_blank">
+        <i class="fab fa-github" style="font-size: 20px;"></i>
+      </a>
+      <a href="mailto:3330253407@qq.com" class="icon-button">
+        <i class="fas fa-envelope" style="font-size: 20px;"></i>
+      </a>
+    </div>
+    <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
+  </footer>
 
   <div class="popup" id="name-popup">
     <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
@@ -333,4 +333,3 @@
   </script>
 </body>
 </html>
-
