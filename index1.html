@@ -149,6 +149,23 @@
             font-weight: bold;
         }
 
+    .source-lion {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .source-lion:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+  }
     .source-link {
       display: block;
       width: 200px;
@@ -338,7 +355,7 @@
             flex: 1;
         }
         .card-title {
-            font-size: 16px;
+            font-size: 12px;
             margin: 0 0 5px;
         }
         .card-description {
@@ -359,7 +376,7 @@
             background-color: #45a049;
         }
         .output-text {
-    font-size: 2.3vh;
+    font-size: 2.4vh;
     color: #fff;
     font-family: "Microsoft JhengHei", "新細明體", sans-serif;
     text-align: center;
@@ -390,9 +407,9 @@
     <!-- 内容将在这里显示 -->
     </p>
     <a href="/miyao.html" class="source-miyao" target="_blank">🔑书源密钥🔑</a>
-    <a href="https://taoba.cf/" class="source-link source-ysqfby" target="_blank">源社区发布页</a>
-    <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-link source-repository" target="_blank">源仓库</a>
-    <a href="https://yolo52.github.io/Yuedu/" class="source-link source-yolo" target="_blank">yolo 书库</a>
+    <a href="https://taoba.cf/" class="source-lion" target="_blank">源社区发布页</a>
+    <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-lion" target="_blank">源仓库</a>
+    <a href="https://yolo52.github.io/Yuedu/" class="source-lion" target="_blank">yolo 书库</a>
     <div class="container">
         <div class="card">
             <div class="card-icon">🔗</div>
@@ -412,7 +429,7 @@
   <p style="margin: 10px 0; font-weight: bold;">友情链接：</p>
   <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px;">
     <a href="https://blog.ttxz.eu.org" target="_blank" class="friend-link">天天的小站</a>
-    <a href="http://czyl.cf:5080/" target="_blank" class="friend-link">在线工具箱</a>
+    <a href="https://mwdh.cc/" target="_blank" class="friend-link">莫问导航</a>
     <button class="friend-link" onclick="togglePopup()">更多链接</button>
   </div>
   <p style="margin: 5px 0;">🧾版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
@@ -440,6 +457,7 @@
           <li><a href="http://fb.shushan.vip:9999/" target="_blank">书山发布页</a></li>
           <li><a href="https://jingluo.love/" target="_blank">🐋鲸落博客</a></li>
           <li><a href="https://www.yesui.me" target="_blank">情无羁的世界</a></li>
+          <li><a href="http://czyl.cf:5080/" target="_blank">在线工具箱</a></li>
           <!-- 添加更多链接 -->
           <!-- 如果链接很多，弹窗会自动显示滚动条 -->
         </ul>
@@ -546,8 +564,6 @@ window.addEventListener('load', () => {
                     document.getElementById('output').textContent = 'Error fetching data';
                 }
             }
-
-            // Call the fetchData function to access the API and display the data
             fetchData();
     </script>
   </body>
