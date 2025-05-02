@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辞晨书源发布页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url('https://api.lucksss.com/api/dmbz?type=avatar');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            animation: loading 3.2s ease-in-out forwards;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .announcement-btn {
+            position: relative;
+            background: linear-gradient(45deg, #4a90e2, var(--main-color));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 25px;
+            font-size: 16px;
+            margin: 15px 5px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 3px 15px rgba(74, 144, 226, 0.4);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 90px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 13px;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .container h2 {
+            text-align: center;
+        }
+
+        .file-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .file-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .file-list li a {
+            display: block;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+
+        .file-list li span {
+            display: block;
+            font-size: 0.8em;
+        }
+
+        .comment {
+            display: none;
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #eef2f7;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        .view-comment {
+            cursor: pointer;
+            color: #4a90e2;
+            text-decoration: underline;
+            font-size: 0.9em;
+        }
+
+        @keyframes loading {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .sakura {
+            position: fixed;
+            top: -10px;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.28);
+            z-index: -1;
+        }
+
+        .announcement-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .announcement-content {
+            position: relative;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 90%;
+            cursor: default;
+        }
+
+        .announcement-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .scrollable-content {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding-right: 10px;
+            line-height: 1.8;
+            color: #555;
+            min-height: 200px;
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .update-log {
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <button class="announcement-btn" id="announcementBtn">查看公告</button>
+        </div>
+        <h2>辞晨书源发布页</h2>
+        <ul id="fileList" class="file-list"></ul>
+    </div>
+    <div class="announcement-modal" id="announcementModal">
+        <div class="announcement-content">
+            <h2 class="announcement-title">📢 最新公告</h2>
+            <button class="close-btn" id="closeBtn">×</button>
+            <div class="scrollable-content">
+                <p>🌟 欢迎来到书源发布页！</p>
+                <p>⚠️ 注意事项：</p>
+                <ol>
+                    <li>所有书源仅供学习交流，禁止商业用途。</li>
+                    <li>如有侵权，请及时联系管理员删除。</li>
+                    <li>发布页手动更新周期：不定期。</li>
+                </ol>
+                <p>🔄 更新日志：</p>
+                <div class="update-log">
+                    <p>·25.05.02 先发这些，也不知道发啥了，后续慢慢发</p>
+                    <p>·25.05.02 大号封了 小号联系q：3075191051(不是大事不要联系)</p>
+                </div>
+                <ul class="flex">
+                    <li><a style="color: var(--main-color);">🌐 反馈群聊：被封没有了</a></li>
+                    <li><a style="color: #ff7e29;">⏰ 服务时间：9:00 - 23:00</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="background-overlay"></div>
+    <script>
+        let currentUrlIndex = 0;
+        const predefinedJsonUrls = [
+            "https://dns.jingluo.love/2025/681342ef04250.json",
+            "https://dns.jingluo.love/2025/681345a996d2d.json",
+            "https://dns.jingluo.love/2025/680ed56b322a7.json",
+            "https://dns.jingluo.love/2025/68137ed438155.json",
+            "https://dns.jingluo.love/2025/68137ef1956ad.json",
+            "https://dns.jingluo.love/2025/68137f05adefa.json",
+            "https://dns.jingluo.love/2025/68137f187e776.json",
+            "https://dns.jingluo.love/2025/68137f315d7bf.json",
+            "https://dns.jingluo.love/2025/68137f4868421.json",
+            "https://dns.jingluo.love/2025/68137fcd895c4.json",
+            "https://gcore.jsdelivr.net/gh/mumuceo/file01/202504/8650_24c46bf3dd9732941e3f39fcff3732a3.json",
+            "https://gcore.jsdelivr.net/gh/mumuceo/file01/202504/8650_bb798e07fb5cec2db518f4479d4341e1.json"
+        ];
+
+        function processUrls() {
+            if (currentUrlIndex < predefinedJsonUrls.length) {
+                const jsonUrl = predefinedJsonUrls[currentUrlIndex];
+                fetch(jsonUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('网络响应错误');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const bookSourceNames = data.map(item => item.bookSourceName).filter(name => name);
+                        if (bookSourceNames.length > 1) {
+                            const listItem = document.createElement('li');
+                            const linkElement = document.createElement('a');
+                            linkElement.href = `legado://import/Source?src=${jsonUrl}`;
+                            linkElement.textContent = '书源合集';
+                            listItem.appendChild(linkElement);
+                            fileList.appendChild(listItem);
+                            data.forEach(item => {
+                                const listItem = document.createElement('li');
+                                const linkElement = document.createElement('a');
+                                linkElement.textContent = item.bookSourceName;
+                                linkElement.target = '_blank';
+                                listItem.appendChild(linkElement);
+
+                                const viewComment = document.createElement('span');
+                                viewComment.className = 'view-comment';
+                                viewComment.textContent = '源注释';
+                                viewComment.style.marginLeft = '5px';
+                                viewComment.style.cursor = 'pointer';
+                                viewComment.style.color = '#4a90e2';
+                                viewComment.onclick = function () {
+                                    const comment = listItem.querySelector('.comment');
+                                    if (comment) {
+                                        comment.style.display = comment.style.display === 'block' ? 'none' : 'block';
+                                    }
+                                };
+                                listItem.appendChild(viewComment);
+
+                                const commentElement = document.createElement('div');
+                                commentElement.className = 'comment';
+                                commentElement.textContent = item.bookSourceComment || '暂无评论';
+                                listItem.appendChild(commentElement);
+
+                                const urlElement = document.createElement('span');
+                                urlElement.textContent = ` - ${item.bookSourceUrl}`;
+                                urlElement.style.display = 'block';
+                                listItem.appendChild(urlElement);
+                                fileList.appendChild(listItem);
+                            });
+                        } else if (bookSourceNames.length === 1) {
+                            const listItem = document.createElement('li');
+                            const linkElement = document.createElement('a');
+                            linkElement.href = `legado://import/Source?src=${jsonUrl}`;
+                            linkElement.textContent = bookSourceNames[0];
+                            linkElement.target = '_blank';
+                            listItem.appendChild(linkElement);
+
+                            const viewComment = document.createElement('span');
+                            viewComment.className = 'view-comment';
+                            viewComment.textContent = ' 源注释';
+                            viewComment.style.marginLeft = '5px';
+                            viewComment.style.cursor = 'pointer';
+                            viewComment.style.color = '#4a90e2';
+                            viewComment.onclick = function () {
+                                const comment = listItem.querySelector('.comment');
+                                if (comment) {
+                                    comment.style.display = comment.style.display === 'block' ? 'none' : 'block';
+                                }
+                            };
+                            listItem.appendChild(viewComment);
+
+                            const commentElement = document.createElement('div');
+                            commentElement.className = 'comment';
+                            commentElement.textContent = data[0].bookSourceComment || '暂无评论';
+                            listItem.appendChild(commentElement);
+
+                            const urlElement = document.createElement('span');
+                            urlElement.textContent = ` - ${data[0].bookSourceUrl}`;
+                            urlElement.style.display = 'block';
+                            listItem.appendChild(urlElement);
+                            fileList.appendChild(listItem);
+                        } else {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = '未知书源';
+                            fileList.appendChild(listItem);
+                        }
+                        currentUrlIndex++;
+                        processUrls(); // 递归处理下一个 URL
+                    })
+                    .catch(error => {
+                        console.error(`加载JSON文件失败: ${jsonUrl}`, error);
+                        alert(`加载失败：${jsonUrl} - ${error.message}`);
+                        currentUrlIndex++;
+                        processUrls(); // 即使出错也继续处理下一个 URL
+                    });
+            }
+        }
+
+        const fileList = document.getElementById('fileList');
+        const closeBtn = document.getElementById('closeBtn');
+        const announcementBtn = document.getElementById('announcementBtn');
+        const modal = document.getElementById('announcementModal');
+
+        window.onload = function () {
+            processUrls();
+            setTimeout(() => {
+                modal.style.display = 'flex';
+            }, 1000);
+        };
+
+        announcementBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        function createSakura() {
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.innerHTML = '🌸';
+            sakura.style.left = Math.random() * 100 + 'vw';
+            sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+            sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+            document.body.appendChild(sakura);
+            setTimeout(() => sakura.remove(), 5000);
+        }
+        setInterval(createSakura, 300);
+    </script>
+</body>
+</html>
