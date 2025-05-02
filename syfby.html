@@ -192,6 +192,36 @@
             padding-top: 10px;
             margin-top: 10px;
         }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .search-container input {
+            padding: 8px 12px;
+            width: 70%;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .search-container button {
+            padding: 8px 12px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 10px;
+            color: #666;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -199,8 +229,17 @@
         <div class="text-center">
             <button class="announcement-btn" id="announcementBtn">查看公告</button>
         </div>
+
+        <!-- 搜索功能放在这里 -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜索书源...">
+        </div>
+
         <h2>辞晨书源发布页</h2>
         <ul id="fileList" class="file-list"></ul>
+        <div id="noResults" class="no-results" style="display: none;">
+            没有找到匹配的书源。
+        </div>
     </div>
     <div class="announcement-modal" id="announcementModal">
         <div class="announcement-content">
@@ -244,6 +283,10 @@
             "https://gcore.jsdelivr.net/gh/mumuceo/file01/202504/8650_bb798e07fb5cec2db518f4479d4341e1.json"
         ];
 
+        let allBooks = [];
+        let collectionBooks = [];
+        let collections = []; // 用于存储合集信息
+
         function processUrls() {
             if (currentUrlIndex < predefinedJsonUrls.length) {
                 const jsonUrl = predefinedJsonUrls[currentUrlIndex];
@@ -262,7 +305,19 @@
                             linkElement.href = `legado://import/Source?src=${jsonUrl}`;
                             linkElement.textContent = '书源合集';
                             listItem.appendChild(linkElement);
+                            listItem.style.display = 'block'; // 初始显示
+                            listItem.classList.add('collection'); // 为合集添加类标识
+                            listItem.dataset.url = jsonUrl; // 存储合集URL
                             fileList.appendChild(listItem);
+
+                            // 存储合集信息
+                            collections.push({
+                                url: jsonUrl,
+                                element: listItem
+                            });
+
+                            // 存储合集中的书源信息
+                            const booksInCollection = [];
                             data.forEach(item => {
                                 const listItem = document.createElement('li');
                                 const linkElement = document.createElement('a');
@@ -293,7 +348,23 @@
                                 urlElement.textContent = ` - ${item.bookSourceUrl}`;
                                 urlElement.style.display = 'block';
                                 listItem.appendChild(urlElement);
+                                listItem.style.display = 'block'; // 初始显示
+                                listItem.dataset.collectionUrl = jsonUrl; // 存储合集URL
+                                listItem.dataset.name = item.bookSourceName; // 存储书源名称
+                                listItem.dataset.url = item.bookSourceUrl; // 存储书源URL
+                                listItem.dataset.comment = item.bookSourceComment || '暂无评论'; // 存储书源注释
                                 fileList.appendChild(listItem);
+
+                                booksInCollection.push({
+                                    name: item.bookSourceName,
+                                    url: item.bookSourceUrl,
+                                    comment: item.bookSourceComment,
+                                    element: listItem
+                                });
+                            });
+                            collectionBooks.push({
+                                url: jsonUrl,
+                                books: booksInCollection
                             });
                         } else if (bookSourceNames.length === 1) {
                             const listItem = document.createElement('li');
@@ -305,7 +376,7 @@
 
                             const viewComment = document.createElement('span');
                             viewComment.className = 'view-comment';
-                            viewComment.textContent = ' 源注释';
+                            viewComment.textContent = '源注释';
                             viewComment.style.marginLeft = '5px';
                             viewComment.style.cursor = 'pointer';
                             viewComment.style.color = '#4a90e2';
@@ -326,10 +397,21 @@
                             urlElement.textContent = ` - ${data[0].bookSourceUrl}`;
                             urlElement.style.display = 'block';
                             listItem.appendChild(urlElement);
+                            listItem.style.display = 'block'; // 初始显示
+                            listItem.dataset.name = bookSourceNames[0]; // 存储书源名称
+                            listItem.dataset.url = data[0].bookSourceUrl; // 存储书源URL
+                            listItem.dataset.comment = data[0].bookSourceComment || '暂无评论'; // 存储书源注释
                             fileList.appendChild(listItem);
+                            allBooks.push({
+                                name: bookSourceNames[0],
+                                url: data[0].bookSourceUrl,
+                                comment: data[0].bookSourceComment,
+                                element: listItem
+                            });
                         } else {
                             const listItem = document.createElement('li');
                             listItem.textContent = '未知书源';
+                            listItem.style.display = 'block'; // 初始显示
                             fileList.appendChild(listItem);
                         }
                         currentUrlIndex++;
@@ -337,7 +419,6 @@
                     })
                     .catch(error => {
                         console.error(`加载JSON文件失败: ${jsonUrl}`, error);
-                        alert(`加载失败：${jsonUrl} - ${error.message}`);
                         currentUrlIndex++;
                         processUrls(); // 即使出错也继续处理下一个 URL
                     });
@@ -348,6 +429,8 @@
         const closeBtn = document.getElementById('closeBtn');
         const announcementBtn = document.getElementById('announcementBtn');
         const modal = document.getElementById('announcementModal');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
 
         window.onload = function () {
             processUrls();
@@ -381,6 +464,64 @@
             setTimeout(() => sakura.remove(), 5000);
         }
         setInterval(createSakura, 300);
+
+        searchInput.addEventListener('input', performSearch);
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let found = false;
+
+            if (searchTerm === '') {
+                // 显示所有书源和合集
+                document.querySelectorAll('#fileList li').forEach(item => {
+                    item.style.display = 'block';
+                });
+                noResults.style.display = 'none';
+                return;
+            }
+
+            // 隐藏所有书源和合集
+            document.querySelectorAll('#fileList li').forEach(item => {
+                item.style.display = 'none';
+            });
+
+            // 检查单独书源
+            allBooks.forEach(book => {
+                if (book.name.toLowerCase().includes(searchTerm)) {
+                    book.element.style.display = 'block';
+                    found = true;
+                }
+            });
+
+            // 检查合集中的书源
+            collectionBooks.forEach(collection => {
+                const collectionUrl = collection.url;
+                const collectionElement = document.querySelector(`#fileList li.collection[data-url="${collectionUrl}"]`);
+                if (collectionElement) {
+                    const hasMatchingBook = collection.books.some(book => 
+                        book.name.toLowerCase().includes(searchTerm)
+                    );
+                    if (hasMatchingBook) {
+                        // 显示合集
+                        collectionElement.style.display = 'block';
+                        found = true;
+
+                        // 显示合集中的匹配书源
+                        collection.books.forEach(book => {
+                            if (book.name.toLowerCase().includes(searchTerm)) {
+                                book.element.style.display = 'block';
+                            }
+                        });
+                    }
+                }
+            });
+
+            if (!found) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
