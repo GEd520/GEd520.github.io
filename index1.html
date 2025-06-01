@@ -418,7 +418,7 @@
     </p>
     <a href="/miyao.html" class="source-miyao" target="_blank">🔑书源密钥🔑</a>
     <a href="/syfby.html" class="source-syfby" target="_blank">书源发布页</a>
-    <a href="https://gedfqxs.yesui.me/syfby/syfby.html" class="source-lion" target="_blank">辞晨发布页</a>
+    <a href="/syfby/syfby.html" class="source-lion" target="_blank">辞晨发布页</a>
     <a href="https://www.yckceo.com/yuedu/shuyuan/index.html" class="source-lion" target="_blank">源仓库</a>
     <a href="https://yolo52.github.io/Yuedu/" class="source-lion" target="_blank">yolo 书库</a>
     <div class="container">
@@ -552,11 +552,8 @@ window.addEventListener('load', () => {
         setTimeout(() => sakura.remove(), 5000);
       }
       setInterval(createSakura, 300);
-      
-      // Replace this URL with the API you want to access
+    
             const apiUrl = 'https://api.qqsuu.cn/api/dm-djtang';
-
-            // Function to fetch data from the API and display it on the page
             async function fetchData() {
                 try {
                     const response = await fetch(apiUrl);
