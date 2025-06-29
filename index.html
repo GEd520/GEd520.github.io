@@ -3,7 +3,7 @@
 
 <head>
   <meta content="always" name="referrer">
-  <link rel="icon" type="image/png" href="https://via.placeholder.com/50">
+  <link rel="icon" type="image/png" href="static/img/txs.png">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="renderer" content="webkit">
@@ -274,7 +274,7 @@
       <p>辞之次元</p>
     </section>
     <p class="dynamic-text">零碎的岛屿终会找到海，慢慢亦漫漫。</p>
-    <img src="touxiang.jpg" alt="头像" class="rotating-image">
+    <img src="static/img/txs.png" alt="头像" class="rotating-image">
     <p class="image-name">
       <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
     </p>
@@ -305,11 +305,20 @@
   </footer>
 
   <div class="popup" id="name-popup">
-    <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
+    <img src="static/img/txs.png" alt="辞晨的弹窗图片">
   </div>
   <div class="popup-overlay" id="popup-overlay"></div>
   <div class="background-overlay"></div>
   <script>
+    function showNamePopup() {
+      document.getElementById('name-popup').style.display = 'block';
+      document.getElementById('popup-overlay').style.display = 'block';
+    }
+    function closePopup() {
+      document.getElementById('name-popup').style.display = 'none';
+      document.getElementById('popup-overlay').style.display = 'none';
+    }
+    document.getElementById('popup-overlay').addEventListener('click', closePopup);
     
     function closePopup() {
       document.getElementById('name-popup').style.display = 'none';
